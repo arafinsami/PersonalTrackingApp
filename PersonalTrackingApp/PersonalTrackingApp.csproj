@@ -46,133 +46,133 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmDepartment.cs">
+    <Compile Include="FRM\FrmDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDepartment.Designer.cs">
+    <Compile Include="FRM\FrmDepartment.Designer.cs">
       <DependentUpon>FrmDepartment.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDepartmentList.cs">
+    <Compile Include="FRM\FrmDepartmentList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDepartmentList.Designer.cs">
+    <Compile Include="FRM\FrmDepartmentList.Designer.cs">
       <DependentUpon>FrmDepartmentList.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmEmployee.cs">
+    <Compile Include="FRM\FrmEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmEmployee.Designer.cs">
+    <Compile Include="FRM\FrmEmployee.Designer.cs">
       <DependentUpon>FrmEmployee.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmEmployeeList.cs">
+    <Compile Include="FRM\FrmEmployeeList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmEmployeeList.Designer.cs">
+    <Compile Include="FRM\FrmEmployeeList.Designer.cs">
       <DependentUpon>FrmEmployeeList.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmLogin.cs">
+    <Compile Include="FRM\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmLogin.Designer.cs">
+    <Compile Include="FRM\FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMain.cs">
+    <Compile Include="FRM\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMain.Designer.cs">
+    <Compile Include="FRM\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPermission.cs">
+    <Compile Include="FRM\FrmPermission.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmPermission.Designer.cs">
+    <Compile Include="FRM\FrmPermission.Designer.cs">
       <DependentUpon>FrmPermission.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPermissionList.cs">
+    <Compile Include="FRM\FrmPermissionList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmPermissionList.Designer.cs">
+    <Compile Include="FRM\FrmPermissionList.Designer.cs">
       <DependentUpon>FrmPermissionList.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPosition.cs">
+    <Compile Include="FRM\FrmPosition.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmPosition.Designer.cs">
+    <Compile Include="FRM\FrmPosition.Designer.cs">
       <DependentUpon>FrmPosition.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPositionList.cs">
+    <Compile Include="FRM\FrmPositionList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmPositionList.Designer.cs">
+    <Compile Include="FRM\FrmPositionList.Designer.cs">
       <DependentUpon>FrmPositionList.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSalary.cs">
+    <Compile Include="FRM\FrmSalary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSalary.Designer.cs">
+    <Compile Include="FRM\FrmSalary.Designer.cs">
       <DependentUpon>FrmSalary.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSalaryList.cs">
+    <Compile Include="FRM\FrmSalaryList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSalaryList.Designer.cs">
+    <Compile Include="FRM\FrmSalaryList.Designer.cs">
       <DependentUpon>FrmSalaryList.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTask.cs">
+    <Compile Include="FRM\FrmTask.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTask.Designer.cs">
+    <Compile Include="FRM\FrmTask.Designer.cs">
       <DependentUpon>FrmTask.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTaskList.cs">
+    <Compile Include="FRM\FrmTaskList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTaskList.Designer.cs">
+    <Compile Include="FRM\FrmTaskList.Designer.cs">
       <DependentUpon>FrmTaskList.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UTILS\General.cs" />
-    <EmbeddedResource Include="FrmDepartment.resx">
+    <EmbeddedResource Include="FRM\FrmDepartment.resx">
       <DependentUpon>FrmDepartment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDepartmentList.resx">
+    <EmbeddedResource Include="FRM\FrmDepartmentList.resx">
       <DependentUpon>FrmDepartmentList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmEmployee.resx">
+    <EmbeddedResource Include="FRM\FrmEmployee.resx">
       <DependentUpon>FrmEmployee.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmEmployeeList.resx">
+    <EmbeddedResource Include="FRM\FrmEmployeeList.resx">
       <DependentUpon>FrmEmployeeList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmLogin.resx">
+    <EmbeddedResource Include="FRM\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmMain.resx">
+    <EmbeddedResource Include="FRM\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmPermission.resx">
+    <EmbeddedResource Include="FRM\FrmPermission.resx">
       <DependentUpon>FrmPermission.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmPermissionList.resx">
+    <EmbeddedResource Include="FRM\FrmPermissionList.resx">
       <DependentUpon>FrmPermissionList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmPosition.resx">
+    <EmbeddedResource Include="FRM\FrmPosition.resx">
       <DependentUpon>FrmPosition.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmPositionList.resx">
+    <EmbeddedResource Include="FRM\FrmPositionList.resx">
       <DependentUpon>FrmPositionList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSalary.resx">
+    <EmbeddedResource Include="FRM\FrmSalary.resx">
       <DependentUpon>FrmSalary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSalaryList.resx">
+    <EmbeddedResource Include="FRM\FrmSalaryList.resx">
       <DependentUpon>FrmSalaryList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTask.resx">
+    <EmbeddedResource Include="FRM\FrmTask.resx">
       <DependentUpon>FrmTask.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTaskList.resx">
+    <EmbeddedResource Include="FRM\FrmTaskList.resx">
       <DependentUpon>FrmTaskList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
