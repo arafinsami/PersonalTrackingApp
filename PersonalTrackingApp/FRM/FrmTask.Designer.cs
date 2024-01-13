@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTasks = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cmbDepartment = new System.Windows.Forms.ComboBox();
             this.cmbPosition = new System.Windows.Forms.ComboBox();
@@ -50,28 +50,30 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTasks)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.dataGridViewTasks);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(382, 0);
+            this.panel1.Location = new System.Drawing.Point(379, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 485);
+            this.panel1.Size = new System.Drawing.Size(280, 485);
             this.panel1.TabIndex = 0;
             // 
-            // dataGridView1
+            // dataGridViewTasks
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 133);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(200, 352);
-            this.dataGridView1.TabIndex = 1;
+            this.dataGridViewTasks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTasks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewTasks.Location = new System.Drawing.Point(0, 134);
+            this.dataGridViewTasks.Name = "dataGridViewTasks";
+            this.dataGridViewTasks.Size = new System.Drawing.Size(280, 351);
+            this.dataGridViewTasks.TabIndex = 1;
+            this.dataGridViewTasks.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTasks_RowEnter);
             // 
             // panel2
             // 
@@ -82,30 +84,32 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 133);
+            this.panel2.Size = new System.Drawing.Size(280, 134);
             this.panel2.TabIndex = 0;
             // 
             // cmbDepartment
             // 
             this.cmbDepartment.FormattingEnabled = true;
-            this.cmbDepartment.Location = new System.Drawing.Point(3, 79);
+            this.cmbDepartment.Location = new System.Drawing.Point(21, 33);
             this.cmbDepartment.Name = "cmbDepartment";
-            this.cmbDepartment.Size = new System.Drawing.Size(117, 21);
+            this.cmbDepartment.Size = new System.Drawing.Size(120, 21);
             this.cmbDepartment.TabIndex = 11;
+            this.cmbDepartment.SelectedIndexChanged += new System.EventHandler(this.cmbDepartment_SelectedIndexChanged);
             // 
             // cmbPosition
             // 
             this.cmbPosition.FormattingEnabled = true;
-            this.cmbPosition.Location = new System.Drawing.Point(6, 27);
+            this.cmbPosition.Location = new System.Drawing.Point(21, 85);
             this.cmbPosition.Name = "cmbPosition";
-            this.cmbPosition.Size = new System.Drawing.Size(117, 21);
+            this.cmbPosition.Size = new System.Drawing.Size(120, 21);
             this.cmbPosition.TabIndex = 10;
+            this.cmbPosition.SelectedIndexChanged += new System.EventHandler(this.cmbPosition_SelectedIndexChanged);
             // 
             // lblDepartment
             // 
             this.lblDepartment.AutoSize = true;
             this.lblDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDepartment.Location = new System.Drawing.Point(3, 61);
+            this.lblDepartment.Location = new System.Drawing.Point(18, 9);
             this.lblDepartment.Name = "lblDepartment";
             this.lblDepartment.Size = new System.Drawing.Size(82, 15);
             this.lblDepartment.TabIndex = 12;
@@ -115,7 +119,7 @@
             // 
             this.lblPosition.AutoSize = true;
             this.lblPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPosition.Location = new System.Drawing.Point(3, 9);
+            this.lblPosition.Location = new System.Drawing.Point(19, 64);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(59, 15);
             this.lblPosition.TabIndex = 13;
@@ -126,7 +130,7 @@
             this.txtUserNo.Location = new System.Drawing.Point(104, 12);
             this.txtUserNo.Name = "txtUserNo";
             this.txtUserNo.ReadOnly = true;
-            this.txtUserNo.Size = new System.Drawing.Size(100, 20);
+            this.txtUserNo.Size = new System.Drawing.Size(130, 20);
             this.txtUserNo.TabIndex = 0;
             // 
             // txtSurname
@@ -134,7 +138,7 @@
             this.txtSurname.Location = new System.Drawing.Point(104, 64);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.ReadOnly = true;
-            this.txtSurname.Size = new System.Drawing.Size(100, 20);
+            this.txtSurname.Size = new System.Drawing.Size(130, 20);
             this.txtSurname.TabIndex = 2;
             // 
             // txtName
@@ -142,7 +146,7 @@
             this.txtName.Location = new System.Drawing.Point(104, 38);
             this.txtName.Name = "txtName";
             this.txtName.ReadOnly = true;
-            this.txtName.Size = new System.Drawing.Size(100, 20);
+            this.txtName.Size = new System.Drawing.Size(130, 20);
             this.txtName.TabIndex = 1;
             // 
             // lblSurname
@@ -180,7 +184,7 @@
             this.cmbTaskState.FormattingEnabled = true;
             this.cmbTaskState.Location = new System.Drawing.Point(104, 90);
             this.cmbTaskState.Name = "cmbTaskState";
-            this.cmbTaskState.Size = new System.Drawing.Size(100, 21);
+            this.cmbTaskState.Size = new System.Drawing.Size(130, 21);
             this.cmbTaskState.TabIndex = 3;
             // 
             // lbltaskState
@@ -207,7 +211,7 @@
             // 
             this.txtTaskTitle.Location = new System.Drawing.Point(104, 118);
             this.txtTaskTitle.Name = "txtTaskTitle";
-            this.txtTaskTitle.Size = new System.Drawing.Size(100, 20);
+            this.txtTaskTitle.Size = new System.Drawing.Size(130, 20);
             this.txtTaskTitle.TabIndex = 4;
             // 
             // lblContent
@@ -254,7 +258,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 485);
+            this.ClientSize = new System.Drawing.Size(659, 485);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.cmbTaskState);
@@ -275,7 +279,7 @@
             this.Text = "FrmTask";
             this.Load += new System.EventHandler(this.FrmTask_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTasks)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -291,7 +295,6 @@
         private System.Windows.Forms.ComboBox cmbPosition;
         private System.Windows.Forms.Label lblDepartment;
         private System.Windows.Forms.Label lblPosition;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txtUserNo;
         private System.Windows.Forms.TextBox txtSurname;
         private System.Windows.Forms.TextBox txtName;
@@ -306,5 +309,6 @@
         private System.Windows.Forms.TextBox txtContent;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridView dataGridViewTasks;
     }
 }
