@@ -59,13 +59,13 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnApprove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTasks = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.groupBox.SuspendLayout();
             this.pnlAdmin.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTasks)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -99,7 +99,7 @@
             // cmbTaskState
             // 
             this.cmbTaskState.FormattingEnabled = true;
-            this.cmbTaskState.Location = new System.Drawing.Point(54, 73);
+            this.cmbTaskState.Location = new System.Drawing.Point(165, 47);
             this.cmbTaskState.Name = "cmbTaskState";
             this.cmbTaskState.Size = new System.Drawing.Size(105, 21);
             this.cmbTaskState.TabIndex = 2;
@@ -108,7 +108,7 @@
             // 
             this.lblTaskStateForUser.AutoSize = true;
             this.lblTaskStateForUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTaskStateForUser.Location = new System.Drawing.Point(4, 73);
+            this.lblTaskStateForUser.Location = new System.Drawing.Point(168, 19);
             this.lblTaskStateForUser.Name = "lblTaskStateForUser";
             this.lblTaskStateForUser.Size = new System.Drawing.Size(54, 15);
             this.lblTaskStateForUser.TabIndex = 12;
@@ -118,9 +118,9 @@
             // 
             this.groupBox.Controls.Add(this.rbDeliveryDate);
             this.groupBox.Controls.Add(this.rbStartDate);
-            this.groupBox.Location = new System.Drawing.Point(165, 21);
+            this.groupBox.Location = new System.Drawing.Point(6, 73);
             this.groupBox.Name = "groupBox";
-            this.groupBox.Size = new System.Drawing.Size(135, 60);
+            this.groupBox.Size = new System.Drawing.Size(135, 61);
             this.groupBox.TabIndex = 3;
             this.groupBox.TabStop = false;
             // 
@@ -155,6 +155,7 @@
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnClear
             // 
@@ -165,6 +166,7 @@
             this.btnClear.TabIndex = 5;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // dptEndDate
             // 
@@ -232,24 +234,26 @@
             // cmbDepartment
             // 
             this.cmbDepartment.FormattingEnabled = true;
-            this.cmbDepartment.Location = new System.Drawing.Point(110, 113);
+            this.cmbDepartment.Location = new System.Drawing.Point(110, 88);
             this.cmbDepartment.Name = "cmbDepartment";
             this.cmbDepartment.Size = new System.Drawing.Size(117, 21);
             this.cmbDepartment.TabIndex = 4;
+            this.cmbDepartment.SelectedIndexChanged += new System.EventHandler(this.cmbDepartment_SelectedIndexChanged);
             // 
             // cmbPosition
             // 
             this.cmbPosition.FormattingEnabled = true;
-            this.cmbPosition.Location = new System.Drawing.Point(110, 86);
+            this.cmbPosition.Location = new System.Drawing.Point(110, 115);
             this.cmbPosition.Name = "cmbPosition";
             this.cmbPosition.Size = new System.Drawing.Size(117, 21);
             this.cmbPosition.TabIndex = 3;
+            this.cmbPosition.SelectedIndexChanged += new System.EventHandler(this.cmbPosition_SelectedIndexChanged);
             // 
             // lblDepartment
             // 
             this.lblDepartment.AutoSize = true;
             this.lblDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDepartment.Location = new System.Drawing.Point(12, 113);
+            this.lblDepartment.Location = new System.Drawing.Point(12, 88);
             this.lblDepartment.Name = "lblDepartment";
             this.lblDepartment.Size = new System.Drawing.Size(82, 15);
             this.lblDepartment.TabIndex = 8;
@@ -259,7 +263,7 @@
             // 
             this.lblPosition.AutoSize = true;
             this.lblPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPosition.Location = new System.Drawing.Point(12, 86);
+            this.lblPosition.Location = new System.Drawing.Point(12, 113);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(59, 15);
             this.lblPosition.TabIndex = 9;
@@ -386,21 +390,23 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // dataGridView1
+            // dataGridViewTasks
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 142);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(585, 270);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridViewTasks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTasks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewTasks.Location = new System.Drawing.Point(0, 142);
+            this.dataGridViewTasks.Name = "dataGridViewTasks";
+            this.dataGridViewTasks.Size = new System.Drawing.Size(585, 270);
+            this.dataGridViewTasks.TabIndex = 0;
+            this.dataGridViewTasks.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTasks_RowEnter);
             // 
             // FrmTaskList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(585, 512);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewTasks);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "FrmTaskList";
@@ -415,7 +421,7 @@
             this.pnlAdmin.ResumeLayout(false);
             this.pnlAdmin.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTasks)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -428,7 +434,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewTasks;
         private System.Windows.Forms.Button btnApprove;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel pnlAdmin;

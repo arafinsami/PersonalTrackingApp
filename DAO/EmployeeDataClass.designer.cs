@@ -1315,8 +1315,12 @@ namespace DAO
 		private int _ID;
 		
 		private int _EmployeeID;
-		
-		private string _TaskTitle;
+
+        private int _DepartmentID;
+
+        private int _PositionID;
+
+        private string _TaskTitle;
 		
 		private string _TaskContent;
 		
@@ -1334,6 +1338,10 @@ namespace DAO
     partial void OnIDChanged();
     partial void OnEmployeeIDChanging(int value);
     partial void OnEmployeeIDChanged();
+    partial void OnDepartmentIDChanging(int value);
+    partial void OnDepartmentIDChanged();
+    partial void OnPositionIDChanging(int value);
+    partial void OnPositionIDChanged();
     partial void OnTaskTitleChanging(string value);
     partial void OnTaskTitleChanged();
     partial void OnTaskContentChanging(string value);
@@ -1390,8 +1398,48 @@ namespace DAO
 				}
 			}
 		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskTitle", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DepartmentID", DbType = "Int NOT NULL")]
+        public int DepartmentID
+        {
+            get
+            {
+                return this._DepartmentID;
+            }
+            set
+            {
+                if ((this._DepartmentID != value))
+                {
+                    this.OnDepartmentIDChanging(value);
+                    this.SendPropertyChanging();
+                    this._DepartmentID = value;
+                    this.SendPropertyChanged("DepartmentID");
+                    this.OnDepartmentIDChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_PositionID", DbType = "Int NOT NULL")]
+        public int PositionID
+        {
+            get
+            {
+                return this._PositionID;
+            }
+            set
+            {
+                if ((this._PositionID != value))
+                {
+                    this.OnPositionIDChanging(value);
+                    this.SendPropertyChanging();
+                    this._PositionID = value;
+                    this.SendPropertyChanged("PositionID");
+                    this.OnPositionIDChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskTitle", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string TaskTitle
 		{
 			get

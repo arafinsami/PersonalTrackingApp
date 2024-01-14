@@ -17,7 +17,8 @@ namespace BLL
             dto.employees = EmployeeDAO.findAllEmployee();
             dto.positions = PositionDAO.findAll();
             dto.departments = DepartmentDAO.findAll();
-            dto.taskStates = TaskDAO.findAllTasks();
+            dto.taskStates = TaskDAO.findAllTaskStates();
+            dto.tasks = TaskDAO.findAllTasks();
             return dto;
         }
 
