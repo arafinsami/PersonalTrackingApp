@@ -42,6 +42,7 @@ namespace PersonalTrackingApp.FRM
                 task.TaskTitle = txtTaskTitle.Text;
                 task.TaskContent = txtContent.Text;
                 task.TaskStartDate = DateTime.Today;
+                task.TaskDeliveryDate = DateTime.Today;
                 task.TaskState = 1;
                 TaskBLL.save(task);
                 MessageBox.Show("Task saved successfully !!!");
@@ -98,6 +99,7 @@ namespace PersonalTrackingApp.FRM
             if (comboFull)
             {
                 int departmentID = Convert.ToInt32(cmbDepartment.SelectedValue);
+                task.DepartmentID = departmentID;
                 cmbPosition.DataSource = dto.positions.Where(x => x.DepartmentID == departmentID).ToList();
 
                 List<EmployeeDetailsDTO> employees = dto.employees;
@@ -118,6 +120,8 @@ namespace PersonalTrackingApp.FRM
             if (comboFull)
             {
                 List<EmployeeDetailsDTO> employees = dto.employees;
+                int positionID = Convert.ToInt32(cmbPosition.SelectedValue);
+                task.PositionID = positionID;
                 dataGridViewTasks.DataSource = employees.Where(x => x.positionID == Convert.ToInt32(cmbPosition.SelectedValue)).ToList();
             }
         }
