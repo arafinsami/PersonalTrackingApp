@@ -20,6 +20,11 @@ namespace BLL
             return dto;
         }
 
+        public static List<EMPLOYEE> findByUserNoAndPassword(int userNo, string password)
+        {
+            return EmployeeDAO.findByUserNoAndPassword(userNo, password);
+        }
+
         public static bool isUserNoUnique(int userNo)
         {
             List<EMPLOYEE> employees = EmployeeDAO.isUserNoUnique(userNo);

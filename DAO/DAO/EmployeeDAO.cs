@@ -15,8 +15,8 @@ namespace DAO
         public static List<EmployeeDetailsDTO> findAllEmployee()
         {
             List<EmployeeDetailsDTO> dto = new List<EmployeeDetailsDTO>();
-            var list = ( 
-                         from e in context.EMPLOYEEs 
+            var list = (
+                         from e in context.EMPLOYEEs
                          join d in context.DEPARTMENTs on e.DepartmentID equals d.ID
                          join p in context.POSITIONs on e.PositionID equals p.ID
                          select new
@@ -37,7 +37,7 @@ namespace DAO
                              birthDate = e.BirthDay
                          }
                        ).OrderBy(x => x.userNo).ToList();
-            foreach ( var item in list)
+            foreach (var item in list)
             {
                 EmployeeDetailsDTO employeeDetailsDTO = new EmployeeDetailsDTO();
                 employeeDetailsDTO.employeeID = item.employeeID;
@@ -54,9 +54,17 @@ namespace DAO
                 employeeDetailsDTO.isAdmin = item.isAdmin;
                 employeeDetailsDTO.imagePath = item.imagePath;
                 employeeDetailsDTO.birthDate = item.birthDate;
-                dto.Add( employeeDetailsDTO );
+                dto.Add(employeeDetailsDTO);
             }
             return dto;
+        }
+
+        public static List<EMPLOYEE> findByUserNoAndPassword(int userNo, string password)
+        {
+            List<EMPLOYEE> employees = context.EMPLOYEEs
+                .Where(e => e.UserNo == userNo
+                && e.Password == password).ToList();
+            return employees;
         }
 
         public static List<EMPLOYEE> isUserNoUnique(int userNo)
