@@ -58,13 +58,13 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewSaraly = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.pnlUser.SuspendLayout();
             this.grbUser.SuspendLayout();
             this.pnlAdmin.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSaraly)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -103,6 +103,7 @@
             this.btnSearch.TabIndex = 0;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnClear
             // 
@@ -113,6 +114,7 @@
             this.btnClear.TabIndex = 1;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // grbUser
             // 
@@ -214,9 +216,9 @@
             // 
             this.pnlAdmin.Controls.Add(this.cmbDepartment);
             this.pnlAdmin.Controls.Add(this.cmbPosition);
-            this.pnlAdmin.Controls.Add(this.lblDepartment);
             this.pnlAdmin.Controls.Add(this.lblPosition);
             this.pnlAdmin.Controls.Add(this.txtUserNo);
+            this.pnlAdmin.Controls.Add(this.lblDepartment);
             this.pnlAdmin.Controls.Add(this.txtSurName);
             this.pnlAdmin.Controls.Add(this.txtName);
             this.pnlAdmin.Controls.Add(this.lblSurName);
@@ -231,24 +233,26 @@
             // cmbDepartment
             // 
             this.cmbDepartment.FormattingEnabled = true;
-            this.cmbDepartment.Location = new System.Drawing.Point(111, 138);
+            this.cmbDepartment.Location = new System.Drawing.Point(111, 119);
             this.cmbDepartment.Name = "cmbDepartment";
             this.cmbDepartment.Size = new System.Drawing.Size(117, 21);
             this.cmbDepartment.TabIndex = 5;
+            this.cmbDepartment.SelectedIndexChanged += new System.EventHandler(this.cmbDepartment_SelectedIndexChanged);
             // 
             // cmbPosition
             // 
             this.cmbPosition.FormattingEnabled = true;
-            this.cmbPosition.Location = new System.Drawing.Point(111, 111);
+            this.cmbPosition.Location = new System.Drawing.Point(111, 149);
             this.cmbPosition.Name = "cmbPosition";
             this.cmbPosition.Size = new System.Drawing.Size(117, 21);
             this.cmbPosition.TabIndex = 4;
+            this.cmbPosition.SelectedIndexChanged += new System.EventHandler(this.cmbPosition_SelectedIndexChanged);
             // 
             // lblDepartment
             // 
             this.lblDepartment.AutoSize = true;
             this.lblDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDepartment.Location = new System.Drawing.Point(13, 138);
+            this.lblDepartment.Location = new System.Drawing.Point(13, 125);
             this.lblDepartment.Name = "lblDepartment";
             this.lblDepartment.Size = new System.Drawing.Size(82, 15);
             this.lblDepartment.TabIndex = 5;
@@ -258,7 +262,7 @@
             // 
             this.lblPosition.AutoSize = true;
             this.lblPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPosition.Location = new System.Drawing.Point(13, 111);
+            this.lblPosition.Location = new System.Drawing.Point(13, 150);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(59, 15);
             this.lblPosition.TabIndex = 4;
@@ -373,21 +377,22 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // dataGridView1
+            // dataGridViewSaraly
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 192);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(515, 242);
-            this.dataGridView1.TabIndex = 2;
+            this.dataGridViewSaraly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSaraly.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewSaraly.Location = new System.Drawing.Point(0, 192);
+            this.dataGridViewSaraly.Name = "dataGridViewSaraly";
+            this.dataGridViewSaraly.Size = new System.Drawing.Size(515, 242);
+            this.dataGridViewSaraly.TabIndex = 2;
+            this.dataGridViewSaraly.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSaraly_RowEnter);
             // 
             // FrmSalaryList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(515, 523);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewSaraly);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "FrmSalaryList";
@@ -402,7 +407,7 @@
             this.pnlAdmin.ResumeLayout(false);
             this.pnlAdmin.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSaraly)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -411,7 +416,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewSaraly;
         private System.Windows.Forms.Panel pnlAdmin;
         private System.Windows.Forms.Panel pnlUser;
         private System.Windows.Forms.ComboBox cmbDepartment;

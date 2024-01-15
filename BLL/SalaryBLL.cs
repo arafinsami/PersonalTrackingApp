@@ -19,6 +19,7 @@ namespace BLL
             dto.departments = DepartmentDAO.findAll();
             dto.positions = PositionDAO.findAll();
             dto.months = SalaryDAO.findAllMonths();
+            dto.salaries = SalaryDAO.findAllSalaries();
             return dto;
         }
 
