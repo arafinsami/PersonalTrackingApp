@@ -1157,8 +1157,12 @@ namespace DAO
 		private int _ID;
 		
 		private int _EmployeeID;
-		
-		private int _Amount;
+
+        private int _DepartmentID;
+
+        private int _PositionID;
+
+        private int _Amount;
 		
 		private int _Year;
 		
@@ -1172,6 +1176,10 @@ namespace DAO
     partial void OnIDChanged();
     partial void OnEmployeeIDChanging(int value);
     partial void OnEmployeeIDChanged();
+    partial void OnDepartmentIDChanging(int value);
+    partial void OnDepartmentIDChanged();
+    partial void OnPositionIDChanging(int value);
+    partial void OnPositionIDChanged();
     partial void OnAmountChanging(int value);
     partial void OnAmountChanged();
     partial void OnYearChanging(int value);
@@ -1224,8 +1232,48 @@ namespace DAO
 				}
 			}
 		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Int NOT NULL")]
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DepartmentID", DbType = "Int NOT NULL")]
+        public int DepartmentID
+        {
+            get
+            {
+                return this._DepartmentID;
+            }
+            set
+            {
+                if ((this._DepartmentID != value))
+                {
+                    this.OnDepartmentIDChanging(value);
+                    this.SendPropertyChanging();
+                    this._DepartmentID = value;
+                    this.SendPropertyChanged("DepartmentID");
+                    this.OnDepartmentIDChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_PositionID", DbType = "Int NOT NULL")]
+        public int PositionID
+        {
+            get
+            {
+                return this._PositionID;
+            }
+            set
+            {
+                if ((this._PositionID != value))
+                {
+                    this.OnEmployeeIDChanging(value);
+                    this.SendPropertyChanging();
+                    this._PositionID = value;
+                    this.SendPropertyChanged("PositionID");
+                    this.OnPositionIDChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Int NOT NULL")]
 		public int Amount
 		{
 			get
