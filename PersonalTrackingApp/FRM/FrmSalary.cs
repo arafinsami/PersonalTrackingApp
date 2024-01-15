@@ -87,7 +87,7 @@ namespace PersonalTrackingApp.FRM
             cmbPosition.SelectedIndex = -1;
             comboFull = true;
             cmbMonth.DataSource = dto.months;
-            cmbMonth.DisplayMember = "Month Name";
+            cmbMonth.DisplayMember = "MonthName";
             cmbMonth.ValueMember = "ID";
             cmbMonth.SelectedIndex = -1;
         }

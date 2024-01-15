@@ -57,11 +57,11 @@ namespace PersonalTrackingApp.FRM
             dataGridViewSaraly.Columns[5].HeaderText = "Department";
             dataGridViewSaraly.Columns[6].Visible = false;
             dataGridViewSaraly.Columns[7].HeaderText = "Position";
-            dataGridViewSaraly.Columns[8].Visible = false;
-            dataGridViewSaraly.Columns[9].HeaderText = "Month";
-            dataGridViewSaraly.Columns[10].Visible = false;
-            dataGridViewSaraly.Columns[11].HeaderText = "Salary";
-            dataGridViewSaraly.Columns[12].HeaderText = "Salary Year";
+            dataGridViewSaraly.Columns[8].HeaderText = "Month";
+            dataGridViewSaraly.Columns[9].Visible = false;
+            dataGridViewSaraly.Columns[10].HeaderText = "Salary";
+            dataGridViewSaraly.Columns[11].HeaderText = "Salary Year";
+            dataGridViewSaraly.Columns[12].Visible = false;
             dataGridViewSaraly.Columns[13].Visible = false;
             comboFull = false;
             positionsByDepartmentAndMonth();
@@ -79,7 +79,7 @@ namespace PersonalTrackingApp.FRM
             cmbPosition.SelectedIndex = -1;
             comboFull = true;
             cmbMonth.DataSource = dto.months;
-            cmbMonth.DisplayMember = "State Name";
+            cmbMonth.DisplayMember = "MonthName";
             cmbMonth.ValueMember = "ID";
             cmbMonth.SelectedIndex = -1;
         }
@@ -115,13 +115,10 @@ namespace PersonalTrackingApp.FRM
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            txtUserNo.Clear();
-            txtName.Clear();
-            txtSurName.Clear();
+            txtYear.Clear();
+            txtSalary.Clear();
             comboFull = false;
-
             positionsByDepartment();
-
             comboFull = true;
             dataGridViewSaraly.DataSource = dto.salaries;
         }
@@ -141,12 +138,10 @@ namespace PersonalTrackingApp.FRM
         private void btnSearch_Click(object sender, EventArgs e)
         {
             List<SalaryDetailsDTO> salaries = dto.salaries;
-            if (txtUserNo.Text.Trim() != "")
-                salaries = salaries.Where(x => x.userNo == Convert.ToInt32(txtUserNo.Text)).ToList();
-            if (txtName.Text.Trim() != "")
-                salaries = salaries.Where(x => x.name.Contains(txtName.Text)).ToList();
-            if (txtSurName.Text.Trim() != "")
-                salaries = salaries.Where(x => x.surName.Contains(txtSurName.Text)).ToList();
+            if (txtYear.Text.Trim() != "")
+                salaries = salaries.Where(x => x.salaryYear == Convert.ToInt32(txtYear.Text)).ToList();
+            if (txtSalary.Text.Trim() != "")
+                salaries = salaries.Where(x => x.salaryAmount == Convert.ToInt32(txtSalary.Text)).ToList();
             if (cmbDepartment.Text.Trim() != "")
                 salaries = salaries.Where(x => x.departmentName.Contains(cmbDepartment.Text)).ToList();
             if (cmbPosition.Text.Trim() != "")
