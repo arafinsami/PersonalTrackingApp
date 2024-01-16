@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
 using DAO;
+using DAO.DTO;
 using PersonalTrackingApp.UTILS;
 
 namespace PersonalTrackingApp.FRM
@@ -52,11 +53,20 @@ namespace PersonalTrackingApp.FRM
                 }
                 else
                 {
+                    EMPLOYEE employee = employees.First();
+                    UserDTO.employeeID = employee.ID;
+                    UserDTO.userNo = employee.UserNo;
+                    UserDTO.isAdmin = employee.isAdmin;
                     FrmMain frm = new FrmMain();
                     frm.Hide();
                     frm.ShowDialog();
                 }
             }
+        }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

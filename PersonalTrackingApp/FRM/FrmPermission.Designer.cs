@@ -77,6 +77,7 @@
             this.dptStartDate.Name = "dptStartDate";
             this.dptStartDate.Size = new System.Drawing.Size(180, 20);
             this.dptStartDate.TabIndex = 2;
+            this.dptStartDate.ValueChanged += new System.EventHandler(this.dptStartDate_ValueChanged);
             // 
             // lblEndDate
             // 
@@ -94,6 +95,7 @@
             this.dptEndDate.Name = "dptEndDate";
             this.dptEndDate.Size = new System.Drawing.Size(180, 20);
             this.dptEndDate.TabIndex = 3;
+            this.dptEndDate.ValueChanged += new System.EventHandler(this.dptEndDate_ValueChanged);
             // 
             // lblDayAmount
             // 
@@ -121,7 +123,7 @@
             this.lblExplanation.Name = "lblExplanation";
             this.lblExplanation.Size = new System.Drawing.Size(83, 15);
             this.lblExplanation.TabIndex = 0;
-            this.lblExplanation.Text = "Day Amount";
+            this.lblExplanation.Text = "Explanation";
             // 
             // txtExplanation
             // 

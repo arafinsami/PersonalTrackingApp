@@ -58,6 +58,7 @@ namespace PersonalTrackingApp.FRM
             positionsByDepartmentAndTaskState();
         }
 
+
         private void positionsByDepartmentAndTaskState()
         {
             cmbDepartment.DataSource = dto.departments;
