@@ -11,6 +11,7 @@ using PersonalTrackingApp.UTILS;
 using BLL;
 using DAO;
 using DAO.DTO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace PersonalTrackingApp.FRM
 {
@@ -99,8 +100,8 @@ namespace PersonalTrackingApp.FRM
         private void dataGridViewPermission_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             txtUserNo.Text = dataGridViewPermission.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtName.Text = dataGridViewPermission.Rows[e.RowIndex].Cells[3].Value.ToString();
-            txtSurname.Text = dataGridViewPermission.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txtName.Text = dataGridViewPermission.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtSurname.Text = dataGridViewPermission.Rows[e.RowIndex].Cells[3].Value.ToString();
             permission.EmployeeID = Convert.ToInt32(dataGridViewPermission.Rows[e.RowIndex].Cells[0].Value.ToString());
         }
 
@@ -128,10 +129,16 @@ namespace PersonalTrackingApp.FRM
         private void btnSearch_Click(object sender, EventArgs e)
         {
             List<PermissionDetailsDTO> permissions = dto.permissions;
-            if (cmbDepartment.Text.Trim() != "")
-                permissions = permissions.Where(x => x.departmentName.Contains(cmbDepartment.Text)).ToList();
-            if (cmbPosition.Text.Trim() != "")
-                permissions = permissions.Where(x => x.positionName.Contains(cmbPosition.Text)).ToList();
+            if (txtUserNo.Text.Trim() != "")
+                permissions = permissions.Where(x => x.userNo == Convert.ToInt32(txtUserNo.Text)).ToList();
+            if (txtName.Text.Trim() != "")
+                permissions = permissions.Where(x => x.name.Contains(txtName.Text)).ToList();
+            if (txtSurname.Text.Trim() != "")
+                permissions = permissions.Where(x => x.surName.Contains(txtSurname.Text)).ToList();
+            if (cmbDepartment.SelectedIndex != -1)
+                permissions = permissions.Where(x => x.departmentID == Convert.ToInt32(cmbDepartment.SelectedValue)).ToList();
+            if (cmbPosition.SelectedIndex != -1)
+                permissions = permissions.Where(x => x.positionID == Convert.ToInt32(cmbPosition.SelectedValue)).ToList();
             if (rbStartDate.Checked)
                 permissions = permissions.Where(x => x.startDate < Convert.ToDateTime(dptEndDate.Value)
                 && x.startDate > Convert.ToDateTime(dptStartDate.Value)).ToList();
@@ -147,6 +154,9 @@ namespace PersonalTrackingApp.FRM
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            txtUserNo.Clear();
+            txtName.Clear();
+            txtSurname.Clear();
             dptStartDate.Value = DateTime.Now;
             dptEndDate.Value = DateTime.Now;
             txtDayAmount.Clear();
