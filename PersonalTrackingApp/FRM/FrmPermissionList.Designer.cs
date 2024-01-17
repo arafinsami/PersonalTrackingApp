@@ -41,7 +41,6 @@
             this.dptStartDate = new System.Windows.Forms.DateTimePicker();
             this.lblEndDate = new System.Windows.Forms.Label();
             this.lblStartDate = new System.Windows.Forms.Label();
-            this.lblPermissionDate = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.cmbDepartment = new System.Windows.Forms.ComboBox();
             this.cmbPosition = new System.Windows.Forms.ComboBox();
@@ -60,13 +59,15 @@
             this.btnApproved = new System.Windows.Forms.Button();
             this.btnDisApproved = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewPermission = new System.Windows.Forms.DataGridView();
+            this.cmbState = new System.Windows.Forms.ComboBox();
+            this.lblState = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.groupBox.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPermission)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -81,8 +82,10 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.cmbState);
             this.panel4.Controls.Add(this.btnSearch);
             this.panel4.Controls.Add(this.btnClear);
+            this.panel4.Controls.Add(this.lblState);
             this.panel4.Controls.Add(this.lblDayAmount);
             this.panel4.Controls.Add(this.groupBox);
             this.panel4.Controls.Add(this.txtDayAmount);
@@ -90,7 +93,6 @@
             this.panel4.Controls.Add(this.dptStartDate);
             this.panel4.Controls.Add(this.lblEndDate);
             this.panel4.Controls.Add(this.lblStartDate);
-            this.panel4.Controls.Add(this.lblPermissionDate);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(262, 0);
             this.panel4.Name = "panel4";
@@ -106,6 +108,7 @@
             this.btnSearch.TabIndex = 23;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnClear
             // 
@@ -116,12 +119,13 @@
             this.btnClear.TabIndex = 24;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // lblDayAmount
             // 
             this.lblDayAmount.AutoSize = true;
             this.lblDayAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDayAmount.Location = new System.Drawing.Point(8, 110);
+            this.lblDayAmount.Location = new System.Drawing.Point(8, 65);
             this.lblDayAmount.Name = "lblDayAmount";
             this.lblDayAmount.Size = new System.Drawing.Size(73, 15);
             this.lblDayAmount.TabIndex = 3;
@@ -161,7 +165,7 @@
             // 
             // txtDayAmount
             // 
-            this.txtDayAmount.Location = new System.Drawing.Point(84, 110);
+            this.txtDayAmount.Location = new System.Drawing.Point(84, 65);
             this.txtDayAmount.Name = "txtDayAmount";
             this.txtDayAmount.Size = new System.Drawing.Size(183, 20);
             this.txtDayAmount.TabIndex = 3;
@@ -169,7 +173,7 @@
             // 
             // dptEndDate
             // 
-            this.dptEndDate.Location = new System.Drawing.Point(84, 78);
+            this.dptEndDate.Location = new System.Drawing.Point(84, 38);
             this.dptEndDate.Name = "dptEndDate";
             this.dptEndDate.Size = new System.Drawing.Size(183, 20);
             this.dptEndDate.TabIndex = 2;
@@ -177,7 +181,7 @@
             // dptStartDate
             // 
             this.dptStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dptStartDate.Location = new System.Drawing.Point(84, 52);
+            this.dptStartDate.Location = new System.Drawing.Point(84, 12);
             this.dptStartDate.Name = "dptStartDate";
             this.dptStartDate.Size = new System.Drawing.Size(183, 20);
             this.dptStartDate.TabIndex = 1;
@@ -186,7 +190,7 @@
             // 
             this.lblEndDate.AutoSize = true;
             this.lblEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEndDate.Location = new System.Drawing.Point(10, 84);
+            this.lblEndDate.Location = new System.Drawing.Point(8, 38);
             this.lblEndDate.Name = "lblEndDate";
             this.lblEndDate.Size = new System.Drawing.Size(52, 13);
             this.lblEndDate.TabIndex = 2;
@@ -196,21 +200,11 @@
             // 
             this.lblStartDate.AutoSize = true;
             this.lblStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartDate.Location = new System.Drawing.Point(10, 52);
+            this.lblStartDate.Location = new System.Drawing.Point(8, 9);
             this.lblStartDate.Name = "lblStartDate";
             this.lblStartDate.Size = new System.Drawing.Size(55, 13);
             this.lblStartDate.TabIndex = 1;
             this.lblStartDate.Text = "Start Date";
-            // 
-            // lblPermissionDate
-            // 
-            this.lblPermissionDate.AutoSize = true;
-            this.lblPermissionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPermissionDate.Location = new System.Drawing.Point(10, 20);
-            this.lblPermissionDate.Name = "lblPermissionDate";
-            this.lblPermissionDate.Size = new System.Drawing.Size(126, 17);
-            this.lblPermissionDate.TabIndex = 0;
-            this.lblPermissionDate.Text = "Permission Date";
             // 
             // panel3
             // 
@@ -233,24 +227,26 @@
             // cmbDepartment
             // 
             this.cmbDepartment.FormattingEnabled = true;
-            this.cmbDepartment.Location = new System.Drawing.Point(122, 142);
+            this.cmbDepartment.Location = new System.Drawing.Point(122, 116);
             this.cmbDepartment.Name = "cmbDepartment";
             this.cmbDepartment.Size = new System.Drawing.Size(117, 21);
             this.cmbDepartment.TabIndex = 4;
+            this.cmbDepartment.SelectedIndexChanged += new System.EventHandler(this.cmbDepartment_SelectedIndexChanged);
             // 
             // cmbPosition
             // 
             this.cmbPosition.FormattingEnabled = true;
-            this.cmbPosition.Location = new System.Drawing.Point(122, 115);
+            this.cmbPosition.Location = new System.Drawing.Point(122, 144);
             this.cmbPosition.Name = "cmbPosition";
             this.cmbPosition.Size = new System.Drawing.Size(117, 21);
             this.cmbPosition.TabIndex = 3;
+            this.cmbPosition.SelectedIndexChanged += new System.EventHandler(this.cmbPosition_SelectedIndexChanged);
             // 
             // lblDepartment
             // 
             this.lblDepartment.AutoSize = true;
             this.lblDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDepartment.Location = new System.Drawing.Point(24, 142);
+            this.lblDepartment.Location = new System.Drawing.Point(24, 116);
             this.lblDepartment.Name = "lblDepartment";
             this.lblDepartment.Size = new System.Drawing.Size(82, 15);
             this.lblDepartment.TabIndex = 4;
@@ -260,7 +256,7 @@
             // 
             this.lblPosition.AutoSize = true;
             this.lblPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPosition.Location = new System.Drawing.Point(24, 115);
+            this.lblPosition.Location = new System.Drawing.Point(24, 144);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(59, 15);
             this.lblPosition.TabIndex = 3;
@@ -381,7 +377,7 @@
             this.btnDisApproved.Name = "btnDisApproved";
             this.btnDisApproved.Size = new System.Drawing.Size(105, 66);
             this.btnDisApproved.TabIndex = 1;
-            this.btnDisApproved.Text = "DisApproved";
+            this.btnDisApproved.Text = "Dis Approved";
             this.btnDisApproved.UseVisualStyleBackColor = true;
             // 
             // btnSave
@@ -395,21 +391,41 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // dataGridView1
+            // dataGridViewPermission
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 200);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(576, 210);
-            this.dataGridView1.TabIndex = 2;
+            this.dataGridViewPermission.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewPermission.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPermission.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewPermission.Location = new System.Drawing.Point(0, 200);
+            this.dataGridViewPermission.Name = "dataGridViewPermission";
+            this.dataGridViewPermission.Size = new System.Drawing.Size(576, 210);
+            this.dataGridViewPermission.TabIndex = 2;
+            this.dataGridViewPermission.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPermission_RowEnter);
+            // 
+            // cmbState
+            // 
+            this.cmbState.FormattingEnabled = true;
+            this.cmbState.Location = new System.Drawing.Point(84, 91);
+            this.cmbState.Name = "cmbState";
+            this.cmbState.Size = new System.Drawing.Size(183, 21);
+            this.cmbState.TabIndex = 25;
+            // 
+            // lblState
+            // 
+            this.lblState.AutoSize = true;
+            this.lblState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblState.Location = new System.Drawing.Point(8, 92);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(35, 15);
+            this.lblState.TabIndex = 3;
+            this.lblState.Text = "State";
             // 
             // FrmPermissionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(576, 513);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewPermission);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "FrmPermissionList";
@@ -424,7 +440,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPermission)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -433,7 +449,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewPermission;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
@@ -460,9 +476,10 @@
         private System.Windows.Forms.DateTimePicker dptStartDate;
         private System.Windows.Forms.Label lblEndDate;
         private System.Windows.Forms.Label lblStartDate;
-        private System.Windows.Forms.Label lblPermissionDate;
         private System.Windows.Forms.TextBox txtDayAmount;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.ComboBox cmbState;
+        private System.Windows.Forms.Label lblState;
     }
 }
