@@ -76,5 +76,36 @@ namespace DAO.DAO
                 Console.WriteLine(ex.ToString());
             }
         }
+
+        public static void update(PERMISSION permission)
+        {
+            try
+            {
+                PERMISSION pr = context.PERMISSIONs.First(x => x.ID == permission.ID);
+                pr.PermissionStartDate = permission.PermissionStartDate;
+                pr.PermissionEndDate = permission.PermissionEndDate;
+                pr.PermissionExplanation = permission.PermissionExplanation;
+                pr.PermissionDay = permission.PermissionDay;
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        public static void update(int permissionID, int permissionStates)
+        {
+            try
+            {
+                PERMISSION pr = context.PERMISSIONs.First(x => x.ID == permissionID);
+                pr.PermissionState = permissionStates;
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
     }
 }

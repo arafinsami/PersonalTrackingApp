@@ -11,7 +11,6 @@ using PersonalTrackingApp.UTILS;
 using BLL;
 using DAO;
 using DAO.DTO;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace PersonalTrackingApp.FRM
 {
@@ -23,7 +22,7 @@ namespace PersonalTrackingApp.FRM
         }
 
         PermissionDTO dto = new PermissionDTO();
-        PERMISSION permission = new PERMISSION();
+        PermissionDetailsDTO detailsDTO = new PermissionDetailsDTO();
         bool comboFull = false;
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -51,13 +50,27 @@ namespace PersonalTrackingApp.FRM
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            FrmPermission permission = new FrmPermission();
-            this.Hide();
-            permission.ShowDialog();
-            this.Visible = true;
+            if (detailsDTO.permissionID == 0)
+                MessageBox.Show("please select a permission from table !!!");
+            else
+            {
+                FrmPermission frmPermission = new FrmPermission();
+                frmPermission.isUpdate = true;
+                frmPermission.detailsDTO = detailsDTO;
+                this.Hide();
+                frmPermission.ShowDialog();
+                this.Visible = true;
+                fillForm();
+                clearData();
+            }
         }
 
         private void FrmPermissionList_Load(object sender, EventArgs e)
+        {
+            fillForm();
+        }
+
+        private void fillForm()
         {
             dto = PermissionBLL.findAllPermission();
             dataGridViewPermission.DataSource = dto.permissions;
@@ -99,10 +112,14 @@ namespace PersonalTrackingApp.FRM
 
         private void dataGridViewPermission_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            txtUserNo.Text = dataGridViewPermission.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtName.Text = dataGridViewPermission.Rows[e.RowIndex].Cells[2].Value.ToString();
-            txtSurname.Text = dataGridViewPermission.Rows[e.RowIndex].Cells[3].Value.ToString();
-            permission.EmployeeID = Convert.ToInt32(dataGridViewPermission.Rows[e.RowIndex].Cells[0].Value.ToString());
+            detailsDTO.permissionID = Convert.ToInt32(dataGridViewPermission.Rows[e.RowIndex].Cells[14].Value);
+            detailsDTO.startDate = Convert.ToDateTime(dataGridViewPermission.Rows[e.RowIndex].Cells[8].Value);
+            detailsDTO.endDate = Convert.ToDateTime(dataGridViewPermission.Rows[e.RowIndex].Cells[9].Value);
+            detailsDTO.explanation = dataGridViewPermission.Rows[e.RowIndex].Cells[13].Value.ToString();
+            detailsDTO.userNo = Convert.ToInt32(dataGridViewPermission.Rows[e.RowIndex].Cells[1].Value.ToString());
+            detailsDTO.stateID = Convert.ToInt32(dataGridViewPermission.Rows[e.RowIndex].Cells[12].Value.ToString());
+            detailsDTO.permissionDayAmount = Convert.ToInt32(dataGridViewPermission.Rows[e.RowIndex].Cells[10].Value.ToString());
+            detailsDTO.employeeID = Convert.ToInt32(dataGridViewPermission.Rows[e.RowIndex].Cells[0].Value.ToString());
         }
 
         private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -154,6 +171,11 @@ namespace PersonalTrackingApp.FRM
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            clearData();
+        }
+
+        private void clearData()
+        {
             txtUserNo.Clear();
             txtName.Clear();
             txtSurname.Clear();
@@ -175,6 +197,20 @@ namespace PersonalTrackingApp.FRM
             cmbPosition.DisplayMember = "PositionName";
             cmbPosition.ValueMember = "ID";
             cmbPosition.SelectedIndex = -1;
+        }
+
+        private void btnApproved_Click(object sender, EventArgs e)
+        {
+            PermissionBLL.update(detailsDTO.permissionID, PermissionStates.approved);
+            MessageBox.Show("Approved !!!");
+            fillForm();
+        }
+
+        private void btnDisApproved_Click(object sender, EventArgs e)
+        {
+            PermissionBLL.update(detailsDTO.permissionID, PermissionStates.disApproved);
+            MessageBox.Show("Dis Approved !!!");
+            fillForm();
         }
     }
 }

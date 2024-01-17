@@ -25,5 +25,15 @@ namespace BLL
         {
             PermissionDAO.save(permission);
         }
+
+        public static void update(PERMISSION permission)
+        {
+            PermissionDAO.update(permission);
+        }
+
+        public static void update(int permissionID, int permissionStates)
+        {
+            PermissionDAO.update(permissionID, permissionStates);
+        }
     }
 }

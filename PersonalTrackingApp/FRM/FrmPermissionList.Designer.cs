@@ -30,8 +30,10 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.cmbState = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.lblState = new System.Windows.Forms.Label();
             this.lblDayAmount = new System.Windows.Forms.Label();
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.rbDeliveryDate = new System.Windows.Forms.RadioButton();
@@ -60,8 +62,6 @@
             this.btnDisApproved = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.dataGridViewPermission = new System.Windows.Forms.DataGridView();
-            this.cmbState = new System.Windows.Forms.ComboBox();
-            this.lblState = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.groupBox.SuspendLayout();
@@ -99,6 +99,14 @@
             this.panel4.Size = new System.Drawing.Size(314, 200);
             this.panel4.TabIndex = 1;
             // 
+            // cmbState
+            // 
+            this.cmbState.FormattingEnabled = true;
+            this.cmbState.Location = new System.Drawing.Point(84, 91);
+            this.cmbState.Name = "cmbState";
+            this.cmbState.Size = new System.Drawing.Size(183, 21);
+            this.cmbState.TabIndex = 25;
+            // 
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -120,6 +128,16 @@
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // lblState
+            // 
+            this.lblState.AutoSize = true;
+            this.lblState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblState.Location = new System.Drawing.Point(8, 92);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(35, 15);
+            this.lblState.TabIndex = 3;
+            this.lblState.Text = "State";
             // 
             // lblDayAmount
             // 
@@ -369,6 +387,7 @@
             this.btnApproved.TabIndex = 0;
             this.btnApproved.Text = "Approved";
             this.btnApproved.UseVisualStyleBackColor = true;
+            this.btnApproved.Click += new System.EventHandler(this.btnApproved_Click);
             // 
             // btnDisApproved
             // 
@@ -379,6 +398,7 @@
             this.btnDisApproved.TabIndex = 1;
             this.btnDisApproved.Text = "Dis Approved";
             this.btnDisApproved.UseVisualStyleBackColor = true;
+            this.btnDisApproved.Click += new System.EventHandler(this.btnDisApproved_Click);
             // 
             // btnSave
             // 
@@ -401,24 +421,6 @@
             this.dataGridViewPermission.Size = new System.Drawing.Size(576, 210);
             this.dataGridViewPermission.TabIndex = 2;
             this.dataGridViewPermission.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPermission_RowEnter);
-            // 
-            // cmbState
-            // 
-            this.cmbState.FormattingEnabled = true;
-            this.cmbState.Location = new System.Drawing.Point(84, 91);
-            this.cmbState.Name = "cmbState";
-            this.cmbState.Size = new System.Drawing.Size(183, 21);
-            this.cmbState.TabIndex = 25;
-            // 
-            // lblState
-            // 
-            this.lblState.AutoSize = true;
-            this.lblState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblState.Location = new System.Drawing.Point(8, 92);
-            this.lblState.Name = "lblState";
-            this.lblState.Size = new System.Drawing.Size(35, 15);
-            this.lblState.TabIndex = 3;
-            this.lblState.Text = "State";
             // 
             // FrmPermissionList
             // 

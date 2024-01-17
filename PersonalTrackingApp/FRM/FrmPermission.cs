@@ -22,6 +22,8 @@ namespace PersonalTrackingApp.FRM
         }
 
         TimeSpan permissionDay;
+        public bool isUpdate = false;
+        public PermissionDetailsDTO detailsDTO = new PermissionDetailsDTO();
 
         private void txtUserNo_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -44,24 +46,54 @@ namespace PersonalTrackingApp.FRM
             else
             {
                 PERMISSION permission = new PERMISSION();
-                permission.EmployeeID = UserDTO.employeeID;
-                permission.PermissionState = 1;
-                permission.PermissionStartDate = dptStartDate.Value.Date;
-                permission.PermissionEndDate = dptEndDate.Value.Date;
-                permission.PermissionDay = Convert.ToInt32(txtDayAmount.Text);
-                permission.PermissionExplanation = txtExplanation.Text;
-                PermissionBLL.save(permission);
-                MessageBox.Show("permission saved successfully !!!");
-                permission = new PERMISSION();
-                dptStartDate.Value = DateTime.Today;
-                dptEndDate.Value = DateTime.Today;
-                txtExplanation.Clear();
+                if (!isUpdate)
+                {
+                    permission.EmployeeID = UserDTO.employeeID;
+                    permission.PermissionState = 1;
+                    permission.PermissionStartDate = dptStartDate.Value;
+                    permission.PermissionEndDate = dptEndDate.Value;
+                    permission.PermissionDay = Convert.ToInt32(txtDayAmount.Text);
+                    permission.PermissionExplanation = txtExplanation.Text;
+                    PermissionBLL.save(permission);
+                    MessageBox.Show("permission saved successfully !!!");
+                    permission = clearForm();
+                }
+                else if (isUpdate)
+                {
+                    DialogResult dialogResult = MessageBox.Show("are you sure to update !!!", "Warning", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        permission.ID = detailsDTO.permissionID;
+                        permission.PermissionStartDate = dptStartDate.Value;
+                        permission.PermissionEndDate = dptEndDate.Value;
+                        permission.PermissionDay = Convert.ToInt32(txtDayAmount.Text);
+                        permission.PermissionExplanation = txtExplanation.Text;
+                        PermissionBLL.update(permission);
+                        MessageBox.Show("permission updated successfully !!!");
+                        permission = clearForm();
+                    }
+                }
             }
+        }
+
+        private PERMISSION clearForm()
+        {
+            PERMISSION permission = new PERMISSION();
+            dptStartDate.Value = DateTime.Today;
+            dptEndDate.Value = DateTime.Today;
+            txtExplanation.Clear();
+            return permission;
         }
 
         private void FrmPermission_Load(object sender, EventArgs e)
         {
             txtUserNo.Text = UserDTO.userNo.ToString();
+            if (isUpdate)
+                dptStartDate.Value = detailsDTO.startDate;
+            dptEndDate.Value = detailsDTO.endDate;
+            txtDayAmount.Text = detailsDTO.permissionDayAmount.ToString();
+            txtExplanation.Text = detailsDTO.explanation;
+            txtUserNo.Text = detailsDTO.userNo.ToString();
         }
 
         private void dptStartDate_ValueChanged(object sender, EventArgs e)
