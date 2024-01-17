@@ -26,5 +26,10 @@ namespace BLL
         {
             TaskDAO.save(task);
         }
+
+        public static void update(TASK task)
+        {
+            TaskDAO.update(task);
+        }
     }
 }

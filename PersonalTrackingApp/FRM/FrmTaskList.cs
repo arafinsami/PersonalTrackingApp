@@ -22,6 +22,7 @@ namespace PersonalTrackingApp.FRM
         }
 
         TaskDTO dto = new TaskDTO();
+        TaskDetailDTO taskDetailsDTO = new TaskDetailDTO();
         TASK task = new TASK();
         bool comboFull = false;
 
@@ -36,6 +37,11 @@ namespace PersonalTrackingApp.FRM
         }
 
         private void FrmTaskList_Load(object sender, EventArgs e)
+        {
+            fillForm();
+        }
+
+        private void fillForm()
         {
             dto = TaskBLL.findAllTasks();
             dataGridViewTasks.DataSource = dto.tasks;
@@ -57,7 +63,6 @@ namespace PersonalTrackingApp.FRM
             comboFull = false;
             positionsByDepartmentAndTaskState();
         }
-
 
         private void positionsByDepartmentAndTaskState()
         {
@@ -86,18 +91,32 @@ namespace PersonalTrackingApp.FRM
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            FrmTask frmTask = new FrmTask();
-            this.Hide();
-            frmTask.ShowDialog();
-            this.Visible = true;
+            if (taskDetailsDTO.taskID == 0)
+                MessageBox.Show("please select a task !!!");
+            else
+            {
+                FrmTask frmTask = new FrmTask();
+                frmTask.isUpdate = true;
+                frmTask.taskDetailDTO = taskDetailsDTO;
+                this.Hide();
+                frmTask.ShowDialog();
+                fillForm();
+                this.Visible = true;
+            }
         }
 
         private void dataGridViewTasks_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            txtUserNo.Text = dataGridViewTasks.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtName.Text = dataGridViewTasks.Rows[e.RowIndex].Cells[3].Value.ToString();
-            txtSurName.Text = dataGridViewTasks.Rows[e.RowIndex].Cells[4].Value.ToString();
-            task.EmployeeID = Convert.ToInt32(dataGridViewTasks.Rows[e.RowIndex].Cells[0].Value.ToString());
+            taskDetailsDTO.employeeID = Convert.ToInt32(dataGridViewTasks.Rows[e.RowIndex].Cells[0].Value);
+            taskDetailsDTO.taskID = Convert.ToInt32(dataGridViewTasks.Rows[e.RowIndex].Cells[8].Value);
+            taskDetailsDTO.taskStateID = Convert.ToInt32(dataGridViewTasks.Rows[e.RowIndex].Cells[12].Value);
+            taskDetailsDTO.userNo = Convert.ToInt32(dataGridViewTasks.Rows[e.RowIndex].Cells[1].Value);
+            taskDetailsDTO.name = dataGridViewTasks.Rows[e.RowIndex].Cells[3].Value.ToString();
+            taskDetailsDTO.surName = dataGridViewTasks.Rows[e.RowIndex].Cells[4].Value.ToString();
+            taskDetailsDTO.title = dataGridViewTasks.Rows[e.RowIndex].Cells[9].Value.ToString();
+            taskDetailsDTO.content = dataGridViewTasks.Rows[e.RowIndex].Cells[10].Value.ToString();
+            taskDetailsDTO.taskStartDate = Convert.ToDateTime(dataGridViewTasks.Rows[e.RowIndex].Cells[13].Value);
+            taskDetailsDTO.taskDeliveryDate = Convert.ToDateTime(dataGridViewTasks.Rows[e.RowIndex].Cells[14].Value);
         }
 
         private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -143,9 +162,7 @@ namespace PersonalTrackingApp.FRM
             txtName.Clear();
             txtSurName.Clear();
             comboFull = false;
-
             positionsByDepartment();
-
             comboFull = true;
             dataGridViewTasks.DataSource = dto.tasks;
         }

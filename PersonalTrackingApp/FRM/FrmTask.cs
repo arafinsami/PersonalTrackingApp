@@ -22,6 +22,8 @@ namespace PersonalTrackingApp.FRM
 
         TaskDTO dto = new TaskDTO();
         TASK task = new TASK();
+        public TaskDetailDTO taskDetailDTO = new TaskDetailDTO();
+        public bool isUpdate = false;
         bool comboFull = false;
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -31,6 +33,8 @@ namespace PersonalTrackingApp.FRM
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            lbltaskState.Visible = true;
+            cmbTaskState.Visible = true;
             if (task.EmployeeID == 0)
                 MessageBox.Show("select an employee !!!");
             else if (txtTaskTitle.Text.Trim() == "")
@@ -39,23 +43,64 @@ namespace PersonalTrackingApp.FRM
                 MessageBox.Show("insert a task content !!!");
             else
             {
-                task.TaskTitle = txtTaskTitle.Text;
-                task.TaskContent = txtContent.Text;
-                task.TaskStartDate = DateTime.Today;
-                task.TaskDeliveryDate = DateTime.Today;
-                task.TaskState = 1;
-                TaskBLL.save(task);
-                MessageBox.Show("Task saved successfully !!!");
-                txtTaskTitle.Clear();
-                txtContent.Clear();
-                task = new TASK();
+                if (!isUpdate)
+                {
+                    lbltaskState.Visible = true;
+                    cmbTaskState.Visible = true;
+                    task.TaskTitle = txtTaskTitle.Text;
+                    task.TaskContent = txtContent.Text;
+                    task.TaskStartDate = DateTime.Today;
+                    task.TaskDeliveryDate = DateTime.Today;
+                    task.TaskState = 1;
+                    TaskBLL.save(task);
+                    MessageBox.Show("Task saved successfully !!!");
+                    txtTaskTitle.Clear();
+                    txtContent.Clear();
+                    task = new TASK();
+                }
+                else if (isUpdate)
+                {
+                    DialogResult dialogResult = MessageBox.Show("are you sure to update !!!", "Warning", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        TASK update = new TASK();
+                        update.ID = taskDetailDTO.taskID;
+                        if (Convert.ToInt32(txtUserNo.Text) != taskDetailDTO.userNo)
+                            update.EmployeeID = task.EmployeeID;
+                        else
+                            update.EmployeeID = taskDetailDTO.employeeID;
+
+                        update.TaskTitle = txtTaskTitle.Text;
+                        update.TaskContent = txtContent.Text;
+                        update.TaskState = Convert.ToInt32(cmbTaskState.SelectedValue);
+                        TaskBLL.update(update);
+                        MessageBox.Show("task updated !!!");
+                        txtTaskTitle.Clear();
+                        txtContent.Clear();
+                        update = new TASK();
+                        fillForm();
+                    }
+                }
             }
         }
 
         private void FrmTask_Load(object sender, EventArgs e)
         {
-            lbltaskState.Visible = false;
-            cmbTaskState.Visible = false;
+            fillForm();
+            if (isUpdate)
+            {
+                txtUserNo.Text = taskDetailDTO.userNo.ToString();
+                txtName.Text = taskDetailDTO.name.ToString();
+                txtSurname.Text = taskDetailDTO.surName.ToString();
+                txtTaskTitle.Text = taskDetailDTO.title;
+                txtContent.Text = taskDetailDTO.content;
+                cmbTaskState.SelectedValue = taskDetailDTO.taskStateID;
+                task.TaskDeliveryDate = taskDetailDTO.taskDeliveryDate;
+            }
+        }
+
+        private void fillForm()
+        {
             dto = TaskBLL.findAllTasks();
             dataGridViewTasks.DataSource = dto.employees;
             dataGridViewTasks.Columns[0].Visible = false;

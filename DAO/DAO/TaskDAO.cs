@@ -80,5 +80,22 @@ namespace DAO.DAO
                 Console.WriteLine(ex.ToString());
             }
         }
+
+        public static void update(TASK task)
+        {
+            try
+            {
+                TASK t = context.TASKs.First(x => x.ID == task.ID);
+                t.TaskTitle = task.TaskTitle;
+                t.TaskContent = task.TaskContent;
+                t.EmployeeID = task.EmployeeID;
+                t.TaskState = task.TaskState;
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
     }
 }
