@@ -47,6 +47,7 @@
             this.dataGridViewDepartmentList.Name = "dataGridViewDepartmentList";
             this.dataGridViewDepartmentList.Size = new System.Drawing.Size(395, 295);
             this.dataGridViewDepartmentList.TabIndex = 0;
+            this.dataGridViewDepartmentList.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDepartmentList_RowEnter);
             // 
             // panelDepartmentList
             // 

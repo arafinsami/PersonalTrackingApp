@@ -20,5 +20,10 @@ namespace BLL
         {
             return DepartmentDAO.findAll();
         }
+
+        public static void update(DEPARTMENT department)
+        {
+            DepartmentDAO.update(department);
+        }
     }
 }

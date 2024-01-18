@@ -19,6 +19,7 @@ namespace PersonalTrackingApp.FRM
             InitializeComponent();
         }
 
+        public DEPARTMENT detail = new DEPARTMENT();
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -35,11 +36,18 @@ namespace PersonalTrackingApp.FRM
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            FrmDepartment department = new FrmDepartment();
-            this.Hide();
-            department.ShowDialog();
-            this.Visible = true;
-            findAll();
+            if (detail.ID == 0)
+                MessageBox.Show("please select a row !!!");
+            else
+            {
+                FrmDepartment frmDepartment = new FrmDepartment();
+                frmDepartment.isUpdate = true;
+                frmDepartment.detail = detail;
+                this.Hide();
+                frmDepartment.ShowDialog();
+                this.Visible = true;
+                findAll();
+            }
         }
 
         private void FrmDepartmentList_Load(object sender, EventArgs e)
@@ -53,6 +61,12 @@ namespace PersonalTrackingApp.FRM
         {
             List<DEPARTMENT> departments = DepartmentBLL.findAll();
             dataGridViewDepartmentList.DataSource = departments;
+        }
+
+        private void dataGridViewDepartmentList_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            detail.ID = Convert.ToInt32(dataGridViewDepartmentList.Rows[e.RowIndex].Cells[0].Value);
+            detail.DepartmentName = dataGridViewDepartmentList.Rows[e.RowIndex].Cells[1].Value.ToString();
         }
     }
 }

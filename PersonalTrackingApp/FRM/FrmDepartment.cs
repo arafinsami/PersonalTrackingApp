@@ -20,9 +20,12 @@ namespace PersonalTrackingApp.FRM
             InitializeComponent();
         }
 
+        public bool isUpdate = false;
+        public DEPARTMENT detail = new DEPARTMENT();
+
         private void btnClose_Click(object sender, EventArgs e)
         {
-           this.Close();
+            this.Close();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -34,16 +37,33 @@ namespace PersonalTrackingApp.FRM
             else
             {
                 DEPARTMENT department = new DEPARTMENT();
-                department.DepartmentName = txtDepartment.Text;
-                DepartmentBLL.addDepartment(department);
-                MessageBox.Show("Department Added successfully !!!");
-                txtDepartment.Clear();
+                if (!isUpdate)
+                {
+                    department.DepartmentName = txtDepartment.Text;
+                    DepartmentBLL.addDepartment(department);
+                    MessageBox.Show("Department Added successfully !!!");
+                    txtDepartment.Clear();
+                }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("are you sure to update !!!", "Warning", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        department.ID = detail.ID;
+                        department.DepartmentName = txtDepartment.Text;
+                        DepartmentBLL.update(department);
+                        MessageBox.Show("department updated successfully !!!");
+                        department = new DEPARTMENT();
+                        txtDepartment.Clear();
+                    }
+                }
             }
         }
 
         private void FrmDepartment_Load(object sender, EventArgs e)
         {
-
+            if (isUpdate)
+                txtDepartment.Text = detail.DepartmentName;
         }
     }
 }

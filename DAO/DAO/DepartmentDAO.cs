@@ -14,8 +14,8 @@ namespace DAO.DAO
             {
                 context.DEPARTMENTs.InsertOnSubmit(department);
                 context.SubmitChanges();
-            } 
-            catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -25,6 +25,20 @@ namespace DAO.DAO
         {
             List<DEPARTMENT> departments = context.DEPARTMENTs.ToList();
             return departments;
+        }
+
+        public static void update(DEPARTMENT department)
+        {
+            try
+            {
+                DEPARTMENT d = context.DEPARTMENTs.First(x => x.ID == department.ID);
+                d.DepartmentName = department.DepartmentName;
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
     }
 }
