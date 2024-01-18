@@ -75,5 +75,21 @@ namespace DAO.DAO
                 Console.WriteLine(ex);
             }
         }
+
+        public static void update(SALARY salary)
+        {
+            try
+            {
+                SALARY s = context.SALARies.First(x => x.ID == salary.ID);
+                s.Amount = salary.Amount;
+                s.Year = salary.Year;
+                s.MonthID = salary.MonthID;
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
     }
 }

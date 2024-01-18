@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.mainPanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cmbDepartment = new System.Windows.Forms.ComboBox();
             this.cmbPosition = new System.Windows.Forms.ComboBox();
@@ -49,20 +49,20 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.dataGridViewSalary = new System.Windows.Forms.DataGridView();
-            this.panel1.SuspendLayout();
+            this.mainPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalary)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // mainPanel
             // 
-            this.panel1.Controls.Add(this.dataGridViewSalary);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(212, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(303, 523);
-            this.panel1.TabIndex = 0;
+            this.mainPanel.Controls.Add(this.dataGridViewSalary);
+            this.mainPanel.Controls.Add(this.panel2);
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.mainPanel.Location = new System.Drawing.Point(212, 0);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(303, 523);
+            this.mainPanel.TabIndex = 0;
             // 
             // panel2
             // 
@@ -272,12 +272,12 @@
             this.Controls.Add(this.lblSurName);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblUserNo);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.mainPanel);
             this.Name = "FrmSalary";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Salary";
             this.Load += new System.EventHandler(this.FrmSalary_Load);
-            this.panel1.ResumeLayout(false);
+            this.mainPanel.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalary)).EndInit();
@@ -288,7 +288,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txtUserNo;
         private System.Windows.Forms.TextBox txtSurName;

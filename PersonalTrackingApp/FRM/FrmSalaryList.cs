@@ -22,6 +22,7 @@ namespace PersonalTrackingApp.FRM
 
         SalaryDTO dto = new SalaryDTO();
         SALARY task = new SALARY();
+        SalaryDetailsDTO salaryDetailsDTO = new SalaryDetailsDTO();
         bool comboFull = false;
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -39,13 +40,29 @@ namespace PersonalTrackingApp.FRM
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            FrmSalary salary = new FrmSalary();
-            this.Hide();
-            salary.ShowDialog();
-            this.Visible = true;
+            if(salaryDetailsDTO.salaryID == 0)
+            {
+                MessageBox.Show("please select a salary !!!");
+            } 
+            else
+            {
+                FrmSalary frmSalary = new FrmSalary();
+                frmSalary.salaryDetailsDTO = salaryDetailsDTO;
+                this.Hide();
+                frmSalary.ShowDialog();
+                this.Visible = true;
+                fillForm();
+                clearForm();
+            }
+            
         }
 
         private void FrmSalaryList_Load(object sender, EventArgs e)
+        {
+            fillForm();
+        }
+
+        private void fillForm()
         {
             dto = SalaryBLL.findAll();
             dataGridViewSaraly.DataSource = dto.salaries;
@@ -107,13 +124,23 @@ namespace PersonalTrackingApp.FRM
 
         private void dataGridViewSaraly_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            txtUserNo.Text = dataGridViewSaraly.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtName.Text = dataGridViewSaraly.Rows[e.RowIndex].Cells[3].Value.ToString();
-            txtSurName.Text = dataGridViewSaraly.Rows[e.RowIndex].Cells[4].Value.ToString();
-            task.EmployeeID = Convert.ToInt32(dataGridViewSaraly.Rows[e.RowIndex].Cells[0].Value.ToString());
+            salaryDetailsDTO.userNo = Convert.ToInt32(dataGridViewSaraly.Rows[e.RowIndex].Cells[1].Value);
+            salaryDetailsDTO.name = dataGridViewSaraly.Rows[e.RowIndex].Cells[3].Value.ToString();
+            salaryDetailsDTO.surName = dataGridViewSaraly.Rows[e.RowIndex].Cells[4].Value.ToString();
+            salaryDetailsDTO.employeeID = Convert.ToInt32(dataGridViewSaraly.Rows[e.RowIndex].Cells[0].Value.ToString());
+            salaryDetailsDTO.salaryID = Convert.ToInt32(dataGridViewSaraly.Rows[e.RowIndex].Cells[12].Value.ToString());
+            salaryDetailsDTO.salaryYear = Convert.ToInt32(dataGridViewSaraly.Rows[e.RowIndex].Cells[11].Value.ToString());
+            salaryDetailsDTO.monthID = Convert.ToInt32(dataGridViewSaraly.Rows[e.RowIndex].Cells[9].Value.ToString());
+            salaryDetailsDTO.salaryAmount = Convert.ToInt32(dataGridViewSaraly.Rows[e.RowIndex].Cells[10].Value.ToString());
+            salaryDetailsDTO.oldSalary = Convert.ToInt32(dataGridViewSaraly.Rows[e.RowIndex].Cells[10].Value.ToString());
         }
 
         private void btnClear_Click(object sender, EventArgs e)
+        {
+            clearForm();
+        }
+
+        private void clearForm()
         {
             txtYear.Clear();
             txtSalary.Clear();

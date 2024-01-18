@@ -27,5 +27,14 @@ namespace BLL
         {
             SalaryDAO.save(salary);
         }
+
+        public static void update(SALARY salary, bool control)
+        {
+            SalaryDAO.update(salary);
+            if (control)
+            {
+                EmployeeDAO.update(salary.EmployeeID, salary.Amount);
+            }
+        }
     }
 }

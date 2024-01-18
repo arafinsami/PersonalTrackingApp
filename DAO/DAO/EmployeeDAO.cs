@@ -84,5 +84,19 @@ namespace DAO
                 Console.WriteLine(ex.ToString());
             }
         }
+
+        public static void update(int employeeID, int salaryAmount)
+        {
+            try
+            {
+                EMPLOYEE employee = context.EMPLOYEEs.First(x => x.ID == employeeID);
+                employee.Salary = salaryAmount;
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
     }
 }

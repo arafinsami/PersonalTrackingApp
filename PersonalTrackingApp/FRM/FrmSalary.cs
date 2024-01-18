@@ -24,6 +24,8 @@ namespace PersonalTrackingApp.FRM
         SalaryDTO dto = new SalaryDTO();
         SALARY salary = new SALARY();
         bool comboFull = false;
+        public bool isUpdate = false;
+        public SalaryDetailsDTO salaryDetailsDTO = new SalaryDetailsDTO();
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -32,51 +34,98 @@ namespace PersonalTrackingApp.FRM
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (salary.EmployeeID == 0)
-                MessageBox.Show("select an employee !!!");
-            else if (txtSalary.Text.Trim() == "")
+
+            if (txtSalary.Text.Trim() == "")
                 MessageBox.Show("insert a salary !!!");
             else if (txtYear.Text.Trim() == "")
                 MessageBox.Show("insert year !!!");
             else
             {
-                salary.Amount = Convert.ToInt32(txtSalary.Text);
-                salary.Year = Convert.ToInt32(txtYear.Text);
-                int monthID = Convert.ToInt32(cmbMonth.SelectedValue);
-                salary.MonthID = monthID;
-                SalaryBLL.save(salary);
-                MessageBox.Show("salary saved successfully !!!");
-                txtSalary.Clear();
-                txtYear.Clear();
-                salary = new SALARY();
+                bool control = false;
+                if (!isUpdate)
+                {
+                    if (salary.EmployeeID == 0)
+                        MessageBox.Show("select an employee !!!");
+                    else
+                    {
+                        salary.Amount = Convert.ToInt32(txtSalary.Text);
+                        salary.Year = Convert.ToInt32(txtYear.Text);
+                        int monthID = Convert.ToInt32(cmbMonth.SelectedValue);
+                        salary.MonthID = monthID;
+                        SalaryBLL.save(salary);
+                        MessageBox.Show("salary saved successfully !!!");
+                        clearForm();
+                        salary = new SALARY();
+                    }
+
+                }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("are you sure to update !!!", "Warning", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        salary.ID = salaryDetailsDTO.salaryID;
+                        salary.EmployeeID = salaryDetailsDTO.employeeID;
+                        salary.Year = salaryDetailsDTO.salaryYear;
+                        salary.MonthID = salaryDetailsDTO.monthID;
+                        salary.Amount = salaryDetailsDTO.salaryAmount;
+
+                        if (salary.Amount > salaryDetailsDTO.oldSalary)
+                            control = true;
+                        SalaryBLL.update(salary, control);
+                        MessageBox.Show("salary updated successfully !!!");
+                        clearForm();
+                        salary = new SALARY();
+                    }
+                }
+
             }
+        }
+
+        private void clearForm()
+        {
+            txtSalary.Clear();
+            txtYear.Clear();
         }
 
         private void FrmSalary_Load(object sender, EventArgs e)
         {
-            dto = SalaryBLL.findAll();
-            dataGridViewSalary.DataSource = dto.employees;
-            dataGridViewSalary.Columns[0].Visible = false;
-            dataGridViewSalary.Columns[1].HeaderText = "user No";
-            dataGridViewSalary.Columns[2].Visible = false;
-            dataGridViewSalary.Columns[3].HeaderText = "Name";
-            dataGridViewSalary.Columns[4].Visible = false;
-            dataGridViewSalary.Columns[5].Visible = false;
-            dataGridViewSalary.Columns[6].Visible = false;
-            dataGridViewSalary.Columns[7].Visible = false;
-            dataGridViewSalary.Columns[8].Visible = false;
-            dataGridViewSalary.Columns[9].Visible = false;
-            dataGridViewSalary.Columns[10].Visible = false;
-            dataGridViewSalary.Columns[11].Visible = false;
-            dataGridViewSalary.Columns[12].Visible = false;
-            dataGridViewSalary.Columns[13].Visible = false;
-            comboFull = false;
-            positionsByDepartmentAndTaskState();
+            if (!isUpdate)
+            {
+                dto = SalaryBLL.findAll();
+                dataGridViewSalary.DataSource = dto.employees;
+                dataGridViewSalary.Columns[0].Visible = false;
+                dataGridViewSalary.Columns[1].HeaderText = "user No";
+                dataGridViewSalary.Columns[2].Visible = false;
+                dataGridViewSalary.Columns[3].HeaderText = "Name";
+                dataGridViewSalary.Columns[4].Visible = false;
+                dataGridViewSalary.Columns[5].Visible = false;
+                dataGridViewSalary.Columns[6].Visible = false;
+                dataGridViewSalary.Columns[7].Visible = false;
+                dataGridViewSalary.Columns[8].Visible = false;
+                dataGridViewSalary.Columns[9].Visible = false;
+                dataGridViewSalary.Columns[10].Visible = false;
+                dataGridViewSalary.Columns[11].Visible = false;
+                dataGridViewSalary.Columns[12].Visible = false;
+                dataGridViewSalary.Columns[13].Visible = false;
+                comboFull = false;
+                positionsByDepartmentAndTaskState();
+            }
+            if (isUpdate)
+            {
+                txtUserNo.Text = salaryDetailsDTO.userNo.ToString();
+                txtName.Text = salaryDetailsDTO.name;
+                txtSurName.Text = salaryDetailsDTO.surName;
+                txtSalary.Text = salaryDetailsDTO.salaryID.ToString();
+                txtYear.Text = salaryDetailsDTO.salaryYear.ToString();
+                cmbMonth.SelectedValue = salaryDetailsDTO.monthID.ToString();
+                txtSalary.Text = salaryDetailsDTO.salaryAmount.ToString();
+                txtSalary.Text = salaryDetailsDTO.oldSalary.ToString();
+            }
         }
 
         private void positionsByDepartmentAndTaskState()
         {
-
             cmbDepartment.DataSource = dto.departments;
             cmbDepartment.DisplayMember = "DepartmentName";
             cmbDepartment.ValueMember = "ID";
