@@ -64,18 +64,17 @@ namespace PersonalTrackingApp.FRM
                     DialogResult dialogResult = MessageBox.Show("are you sure to update !!!", "Warning", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        salary.ID = salaryDetailsDTO.salaryID;
-                        salary.EmployeeID = salaryDetailsDTO.employeeID;
-                        salary.Year = salaryDetailsDTO.salaryYear;
-                        salary.MonthID = salaryDetailsDTO.monthID;
-                        salary.Amount = salaryDetailsDTO.salaryAmount;
-
-                        if (salary.Amount > salaryDetailsDTO.oldSalary)
-                            control = true;
-                        SalaryBLL.update(salary, control);
+                        SALARY updateSalary = new SALARY();
+                        updateSalary.ID = salaryDetailsDTO.salaryID;
+                        updateSalary.EmployeeID = salaryDetailsDTO.employeeID;
+                        updateSalary.Year = Convert.ToInt32(txtYear.Text);
+                        updateSalary.MonthID = Convert.ToInt32(cmbMonth.SelectedValue);
+                        updateSalary.Amount = Convert.ToInt32(txtSalary.Text);
+                        control = true;
+                        SalaryBLL.update(updateSalary, control);
                         MessageBox.Show("salary updated successfully !!!");
                         clearForm();
-                        salary = new SALARY();
+                        updateSalary = new SALARY();
                     }
                 }
 
@@ -89,6 +88,11 @@ namespace PersonalTrackingApp.FRM
         }
 
         private void FrmSalary_Load(object sender, EventArgs e)
+        {
+            fillForm();
+        }
+
+        private void fillForm()
         {
             if (!isUpdate)
             {
@@ -113,10 +117,15 @@ namespace PersonalTrackingApp.FRM
             }
             if (isUpdate)
             {
+                dto = SalaryBLL.findAll();
+                comboFull = true;
+                cmbMonth.DataSource = dto.months;
+                cmbMonth.DisplayMember = "MonthName";
+                cmbMonth.ValueMember = "ID";
+                cmbMonth.SelectedIndex = -1;
                 txtUserNo.Text = salaryDetailsDTO.userNo.ToString();
                 txtName.Text = salaryDetailsDTO.name;
                 txtSurName.Text = salaryDetailsDTO.surName;
-                txtSalary.Text = salaryDetailsDTO.salaryID.ToString();
                 txtYear.Text = salaryDetailsDTO.salaryYear.ToString();
                 cmbMonth.SelectedValue = salaryDetailsDTO.monthID.ToString();
                 txtSalary.Text = salaryDetailsDTO.salaryAmount.ToString();

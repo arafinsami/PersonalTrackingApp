@@ -40,21 +40,22 @@ namespace PersonalTrackingApp.FRM
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if(salaryDetailsDTO.salaryID == 0)
+            if (salaryDetailsDTO.salaryID == 0)
             {
                 MessageBox.Show("please select a salary !!!");
-            } 
+            }
             else
             {
                 FrmSalary frmSalary = new FrmSalary();
                 frmSalary.salaryDetailsDTO = salaryDetailsDTO;
+                frmSalary.isUpdate = true;
                 this.Hide();
                 frmSalary.ShowDialog();
                 this.Visible = true;
                 fillForm();
                 clearForm();
             }
-            
+
         }
 
         private void FrmSalaryList_Load(object sender, EventArgs e)
