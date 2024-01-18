@@ -17,7 +17,7 @@ namespace DAO.DAO
                 context.POSITIONs.InsertOnSubmit(position);
                 context.SubmitChanges();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
@@ -25,28 +25,43 @@ namespace DAO.DAO
 
         public static List<PositionDTO> findAll()
         {
-            var positions = (from p in context.POSITIONs 
-                        join d in context.DEPARTMENTs 
-                        on p.DepartmentID equals d.ID
-                        select new
-                            {
-                               positionID = p.ID,
-                               positionName = p.PositionName,
-                               departmentName = d.DepartmentName,
-                               departmentID = p.DepartmentID
-                            }
+            var positions = (from p in context.POSITIONs
+                             join d in context.DEPARTMENTs
+                             on p.DepartmentID equals d.ID
+                             select new
+                             {
+                                 positionID = p.ID,
+                                 positionName = p.PositionName,
+                                 departmentName = d.DepartmentName,
+                                 departmentID = p.DepartmentID
+                             }
                         ).OrderBy(x => x.positionID).ToList();
             List<PositionDTO> positionDTOs = new List<PositionDTO>();
-            foreach ( var position in positions )
+            foreach (var position in positions)
             {
                 PositionDTO dto = new PositionDTO();
                 dto.ID = position.positionID;
                 dto.PositionName = position.positionName;
                 dto.DepartmentID = position.departmentID;
                 dto.DepartmentName = position.departmentName;
-                positionDTOs.Add( dto );
+                positionDTOs.Add(dto);
             }
             return positionDTOs;
+        }
+
+        public static void update(POSITION position)
+        {
+            try
+            {
+                POSITION p = context.POSITIONs.First(x => x.ID == position.ID);
+                p.PositionName = position.PositionName;
+                p.DepartmentID = position.DepartmentID;
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
     }
 }

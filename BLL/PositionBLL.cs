@@ -20,5 +20,10 @@ namespace BLL
         {
             return PositionDAO.findAll();
         }
+
+        public static void update(POSITION position)
+        {
+            PositionDAO.update(position);
+        }
     }
 }

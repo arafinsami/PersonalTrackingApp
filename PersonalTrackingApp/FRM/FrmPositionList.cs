@@ -20,6 +20,9 @@ namespace PersonalTrackingApp.FRM
             InitializeComponent();
         }
 
+        public PositionDTO detail = new PositionDTO();
+        public bool isUpdate = false;
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -36,25 +39,43 @@ namespace PersonalTrackingApp.FRM
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            FrmPosition position = new FrmPosition();
-            this.Hide();
-            position.ShowDialog();
-            this.Visible = true;
+            if (detail.ID == 0)
+            {
+                MessageBox.Show("please select the row !!!");
+            }
+            else
+            {
+                FrmPosition frmPosition = new FrmPosition();
+                frmPosition.detail = detail;
+                frmPosition.isUpdate = true;
+                this.Hide();
+                frmPosition.ShowDialog();
+                this.Visible = true;
+                findAll();
+            }
         }
 
         private void FrmPositionList_Load(object sender, EventArgs e)
         {
             findAll();
-            dataGridViewPosition.Columns[0].Visible = false;
-            dataGridViewPosition.Columns[1].HeaderText = "Department Name";
-            dataGridViewPosition.Columns[2].Visible = false;
-            dataGridViewPosition.Columns[3].HeaderText = "Position Name";
+
         }
 
         private void findAll()
         {
-            List<PositionDTO> positions  = PositionBLL.findAll();
+            List<PositionDTO> positions = PositionBLL.findAll();
             dataGridViewPosition.DataSource = positions;
+            dataGridViewPosition.Columns[0].HeaderText = "Department Name";
+            dataGridViewPosition.Columns[1].Visible = false;
+            dataGridViewPosition.Columns[2].HeaderText = "Position Name";
+            dataGridViewPosition.Columns[3].Visible = false;
+        }
+
+        private void dataGridViewPosition_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            detail.PositionName = dataGridViewPosition.Rows[e.RowIndex].Cells[2].Value.ToString();
+            detail.ID = Convert.ToInt32(dataGridViewPosition.Rows[e.RowIndex].Cells[1].Value);
+            detail.DepartmentID = Convert.ToInt32(dataGridViewPosition.Rows[e.RowIndex].Cells[3].Value);
         }
     }
 }

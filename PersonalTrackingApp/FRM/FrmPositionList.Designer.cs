@@ -47,6 +47,7 @@
             this.dataGridViewPosition.Name = "dataGridViewPosition";
             this.dataGridViewPosition.Size = new System.Drawing.Size(427, 239);
             this.dataGridViewPosition.TabIndex = 0;
+            this.dataGridViewPosition.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPosition_RowEnter);
             // 
             // pnlPosition
             // 
