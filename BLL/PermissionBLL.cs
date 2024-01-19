@@ -11,6 +11,11 @@ namespace BLL
 {
     public class PermissionBLL
     {
+        public static void delete(int permissionID)
+        {
+            PermissionDAO.delete(permissionID);
+        }
+
         public static PermissionDTO findAllPermission()
         {
             PermissionDTO dto = new PermissionDTO();

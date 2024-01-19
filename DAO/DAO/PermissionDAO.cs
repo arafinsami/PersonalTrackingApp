@@ -11,6 +11,20 @@ namespace DAO.DAO
 {
     public class PermissionDAO : EmployeeContext
     {
+        public static void delete(int permissionID)
+        {
+            try
+            {
+                PERMISSION p = context.PERMISSIONs.First(x => x.ID == permissionID);
+                context.PERMISSIONs.DeleteOnSubmit(p);
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
         public static List<PermissionDetailsDTO> findAllPermission()
         {
             List<PermissionDetailsDTO> permissions = new List<PermissionDetailsDTO>();

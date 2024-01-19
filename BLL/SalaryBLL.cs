@@ -12,6 +12,11 @@ namespace BLL
 {
     public class SalaryBLL
     {
+        public static void delete(int salaryID)
+        {
+            SalaryDAO.delete(salaryID);
+        }
+
         public static SalaryDTO findAll()
         {
             SalaryDTO dto = new SalaryDTO();

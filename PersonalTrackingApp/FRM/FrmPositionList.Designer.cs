@@ -44,6 +44,7 @@
             this.dataGridViewPosition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPosition.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridViewPosition.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewPosition.MultiSelect = false;
             this.dataGridViewPosition.Name = "dataGridViewPosition";
             this.dataGridViewPosition.Size = new System.Drawing.Size(427, 239);
             this.dataGridViewPosition.TabIndex = 0;
@@ -81,6 +82,7 @@
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 

@@ -91,5 +91,18 @@ namespace DAO.DAO
                 Console.WriteLine(ex);
             }
         }
+        public static void delete(int salaryID)
+        {
+            try
+            {
+                SALARY s = context.SALARies.First(x => x.ID == salaryID);
+                context.SALARies.DeleteOnSubmit(s);
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
     }
 }

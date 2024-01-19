@@ -21,6 +21,20 @@ namespace DAO.DAO
             }
         }
 
+        public static void delete(int departmentID)
+        {
+            try
+            {
+                DEPARTMENT d = context.DEPARTMENTs.First(x => x.ID == departmentID);
+                context.DEPARTMENTs.DeleteOnSubmit(d);
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
         public static List<DEPARTMENT> findAll()
         {
             List<DEPARTMENT> departments = context.DEPARTMENTs.ToList();

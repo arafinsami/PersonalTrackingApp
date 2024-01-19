@@ -63,5 +63,19 @@ namespace DAO.DAO
                 Console.WriteLine(ex.ToString());
             }
         }
+
+        public static void delete(int positionID)
+        {
+            try
+            {
+                POSITION p = context.POSITIONs.First(x => x.ID == positionID);
+                context.POSITIONs.DeleteOnSubmit(p);
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
     }
 }

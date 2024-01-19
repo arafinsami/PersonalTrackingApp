@@ -212,5 +212,16 @@ namespace PersonalTrackingApp.FRM
             MessageBox.Show("Dis Approved !!!");
             fillForm();
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("are you sure to delete !!!", "Warning", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                PermissionBLL.delete(detailsDTO.permissionID);
+                MessageBox.Show("permission deleted successfully !!!");
+                fillForm();
+            }
+        }
     }
 }

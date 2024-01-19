@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BLL;
 using DAO;
 using DAO.DTO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace PersonalTrackingApp.FRM
 {
@@ -177,6 +178,17 @@ namespace PersonalTrackingApp.FRM
             if (cmbMonth.Text.Trim() != "")
                 salaries = salaries.Where(x => x.monthName.Contains(cmbMonth.Text)).ToList();
             dataGridViewSaraly.DataSource = salaries;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("are you sure to delete !!!", "Warning", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                SalaryBLL.delete(salaryDetailsDTO.salaryID);
+                MessageBox.Show("salary deleted successfully !!!");
+                fillForm();
+            }
         }
     }
 }

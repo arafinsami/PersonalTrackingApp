@@ -89,11 +89,13 @@ namespace PersonalTrackingApp.FRM
         {
             txtUserNo.Text = UserDTO.userNo.ToString();
             if (isUpdate)
-                dptStartDate.Value = detailsDTO.startDate;
-            dptEndDate.Value = detailsDTO.endDate;
-            txtDayAmount.Text = detailsDTO.permissionDayAmount.ToString();
-            txtExplanation.Text = detailsDTO.explanation;
-            txtUserNo.Text = detailsDTO.userNo.ToString();
+            {
+                dptStartDate.Value = detailsDTO.startDate.Value;
+                dptEndDate.Value = detailsDTO.endDate.Value;
+                txtDayAmount.Text = detailsDTO.permissionDayAmount.ToString();
+                txtExplanation.Text = detailsDTO.explanation;
+                txtUserNo.Text = detailsDTO.userNo.ToString();
+            }
         }
 
         private void dptStartDate_ValueChanged(object sender, EventArgs e)

@@ -16,8 +16,8 @@ namespace DAO.DTO
         public string departmentName { get; set; }
         public int positionID { get; set; }
         public string positionName { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
+        public DateTime? startDate { get; set; }
+        public DateTime? endDate { get; set; }
         public int permissionDayAmount { get; set; }
         public string stateName { get; set; }
         public int stateID { get; set; }

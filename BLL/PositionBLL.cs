@@ -25,5 +25,10 @@ namespace BLL
         {
             PositionDAO.update(position);
         }
+
+        public static void delete(int positionID)
+        {
+            PositionDAO.delete(positionID);
+        }
     }
 }

@@ -44,6 +44,7 @@
             this.dataGridViewDepartmentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDepartmentList.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridViewDepartmentList.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewDepartmentList.MultiSelect = false;
             this.dataGridViewDepartmentList.Name = "dataGridViewDepartmentList";
             this.dataGridViewDepartmentList.Size = new System.Drawing.Size(395, 295);
             this.dataGridViewDepartmentList.TabIndex = 0;
@@ -81,6 +82,7 @@
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 

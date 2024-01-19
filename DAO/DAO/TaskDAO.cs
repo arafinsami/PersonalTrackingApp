@@ -97,5 +97,19 @@ namespace DAO.DAO
                 Console.WriteLine(ex.ToString());
             }
         }
+
+        public static void delete(int taskID)
+        {
+            try
+            {
+                TASK t = context.TASKs.First(x => x.ID == taskID);
+                context.TASKs.DeleteOnSubmit(t);
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
     }
 }

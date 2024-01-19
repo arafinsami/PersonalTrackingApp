@@ -366,6 +366,7 @@
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -417,6 +418,7 @@
             this.dataGridViewPermission.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPermission.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewPermission.Location = new System.Drawing.Point(0, 200);
+            this.dataGridViewPermission.MultiSelect = false;
             this.dataGridViewPermission.Name = "dataGridViewPermission";
             this.dataGridViewPermission.Size = new System.Drawing.Size(576, 210);
             this.dataGridViewPermission.TabIndex = 2;

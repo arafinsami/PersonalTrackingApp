@@ -11,6 +11,7 @@ using PersonalTrackingApp.UTILS;
 using BLL;
 using DAO;
 using DAO.DTO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace PersonalTrackingApp.FRM
 {
@@ -177,6 +178,17 @@ namespace PersonalTrackingApp.FRM
             cmbPosition.DisplayMember = "PositionName";
             cmbPosition.ValueMember = "ID";
             cmbPosition.SelectedIndex = -1;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("are you sure to delete !!!", "Warning", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                TaskBLL.delete(taskDetailsDTO.taskID);
+                MessageBox.Show("task deleted successfully !!!");
+                fillForm();
+            }
         }
     }
 }

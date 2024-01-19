@@ -45,9 +45,9 @@
             this.pnlAdmin = new System.Windows.Forms.Panel();
             this.cmbDepartment = new System.Windows.Forms.ComboBox();
             this.cmbPosition = new System.Windows.Forms.ComboBox();
-            this.lblDepartment = new System.Windows.Forms.Label();
             this.lblPosition = new System.Windows.Forms.Label();
             this.txtUserNo = new System.Windows.Forms.TextBox();
+            this.lblDepartment = new System.Windows.Forms.Label();
             this.txtSurName = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblSurName = new System.Windows.Forms.Label();
@@ -248,16 +248,6 @@
             this.cmbPosition.TabIndex = 4;
             this.cmbPosition.SelectedIndexChanged += new System.EventHandler(this.cmbPosition_SelectedIndexChanged);
             // 
-            // lblDepartment
-            // 
-            this.lblDepartment.AutoSize = true;
-            this.lblDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDepartment.Location = new System.Drawing.Point(13, 125);
-            this.lblDepartment.Name = "lblDepartment";
-            this.lblDepartment.Size = new System.Drawing.Size(82, 15);
-            this.lblDepartment.TabIndex = 5;
-            this.lblDepartment.Text = "Department";
-            // 
             // lblPosition
             // 
             this.lblPosition.AutoSize = true;
@@ -275,6 +265,16 @@
             this.txtUserNo.ReadOnly = true;
             this.txtUserNo.Size = new System.Drawing.Size(117, 20);
             this.txtUserNo.TabIndex = 1;
+            // 
+            // lblDepartment
+            // 
+            this.lblDepartment.AutoSize = true;
+            this.lblDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepartment.Location = new System.Drawing.Point(13, 125);
+            this.lblDepartment.Name = "lblDepartment";
+            this.lblDepartment.Size = new System.Drawing.Size(82, 15);
+            this.lblDepartment.TabIndex = 5;
+            this.lblDepartment.Text = "Department";
             // 
             // txtSurName
             // 
@@ -354,6 +354,7 @@
             this.btnDelete.TabIndex = 7;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -382,6 +383,7 @@
             this.dataGridViewSaraly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewSaraly.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewSaraly.Location = new System.Drawing.Point(0, 192);
+            this.dataGridViewSaraly.MultiSelect = false;
             this.dataGridViewSaraly.Name = "dataGridViewSaraly";
             this.dataGridViewSaraly.Size = new System.Drawing.Size(515, 242);
             this.dataGridViewSaraly.TabIndex = 2;

@@ -16,6 +16,11 @@ namespace BLL
             DepartmentDAO.addDepartment(department);
         }
 
+        public static void delete(int departmentID)
+        {
+            DepartmentDAO.delete(departmentID);
+        }
+
         public static List<DEPARTMENT> findAll()
         {
             return DepartmentDAO.findAll();

@@ -11,6 +11,11 @@ namespace BLL
 {
     public class TaskBLL
     {
+        public static void delete(int taskID)
+        {
+            TaskDAO.delete(taskID);
+        }
+
         public static TaskDTO findAllTasks()
         {
             TaskDTO dto = new TaskDTO();
