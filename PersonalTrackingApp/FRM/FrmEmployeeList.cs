@@ -22,6 +22,7 @@ namespace PersonalTrackingApp.FRM
         }
 
         EmployeeDTO dto = EmployeeBLL.findAllWithPositionsAndDepartments();
+        public EmployeeDetailsDTO details = new EmployeeDetailsDTO();
         bool comboFull = false;
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -40,18 +41,36 @@ namespace PersonalTrackingApp.FRM
             this.Hide();
             frmEmployee.ShowDialog();
             this.Visible = true;
+            fillForm();
+            clearData();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            FrmEmployee frmEmployee = new FrmEmployee();
-            this.Hide();
-            frmEmployee.ShowDialog();
-            this.Visible = true;
+            if (details.employeeID == 0)
+            {
+                MessageBox.Show("please select an employee !!!");
+            }
+            else
+            {
+                FrmEmployee frmEmployee = new FrmEmployee();
+                frmEmployee.details = details;
+                frmEmployee.isUpdate = true;
+                this.Hide();
+                frmEmployee.ShowDialog();
+                this.Visible = true;
+                fillForm();
+                clearData();
+            }
 
         }
 
         private void FrmEmployeeList_Load(object sender, EventArgs e)
+        {
+            fillForm();
+        }
+
+        private void fillForm()
         {
             positionsByDepartment();
 
@@ -104,15 +123,36 @@ namespace PersonalTrackingApp.FRM
 
         private void btnDataClear_Click(object sender, EventArgs e)
         {
+            clearData();
+        }
+
+        private void clearData()
+        {
             txtUserNo.Clear();
             txtName.Clear();
             txtSurname.Clear();
             comboFull = false;
-
             positionsByDepartment();
-
             comboFull = true;
             dataGridViewEmployeeList.DataSource = dto.employees;
+        }
+
+        private void dataGridViewEmployeeList_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            details.employeeID = Convert.ToInt32(dataGridViewEmployeeList.Rows[e.RowIndex].Cells[0].Value);
+            details.userNo = Convert.ToInt32(dataGridViewEmployeeList.Rows[e.RowIndex].Cells[1].Value);
+            details.password = dataGridViewEmployeeList.Rows[e.RowIndex].Cells[2].Value.ToString();
+            details.name = dataGridViewEmployeeList.Rows[e.RowIndex].Cells[3].Value.ToString();
+            details.surName = dataGridViewEmployeeList.Rows[e.RowIndex].Cells[4].Value.ToString();
+            details.departmentID = Convert.ToInt32(dataGridViewEmployeeList.Rows[e.RowIndex].Cells[5].Value);
+            details.departmentName = dataGridViewEmployeeList.Rows[e.RowIndex].Cells[6].Value.ToString();
+            details.positionID = Convert.ToInt32(dataGridViewEmployeeList.Rows[e.RowIndex].Cells[7].Value);
+            details.positionName = dataGridViewEmployeeList.Rows[e.RowIndex].Cells[8].Value.ToString();
+            details.salary = Convert.ToInt32(dataGridViewEmployeeList.Rows[e.RowIndex].Cells[9].Value);
+            details.address = dataGridViewEmployeeList.Rows[e.RowIndex].Cells[10].Value.ToString();
+            details.isAdmin = Convert.ToBoolean(dataGridViewEmployeeList.Rows[e.RowIndex].Cells[11].Value);
+            details.imagePath = dataGridViewEmployeeList.Rows[e.RowIndex].Cells[12].Value.ToString();
+            details.birthDate = Convert.ToDateTime(dataGridViewEmployeeList.Rows[e.RowIndex].Cells[13].Value);
         }
     }
 }

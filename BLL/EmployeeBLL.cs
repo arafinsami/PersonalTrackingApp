@@ -38,5 +38,10 @@ namespace BLL
         {
             EmployeeDAO.save(employee);
         }
+
+        public static void update(EMPLOYEE employee)
+        {
+            EmployeeDAO.update(employee);
+        }
     }
 }

@@ -224,6 +224,7 @@
             this.dataGridViewEmployeeList.Name = "dataGridViewEmployeeList";
             this.dataGridViewEmployeeList.Size = new System.Drawing.Size(564, 302);
             this.dataGridViewEmployeeList.TabIndex = 1;
+            this.dataGridViewEmployeeList.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployeeList_RowEnter);
             // 
             // panel2
             // 

@@ -98,5 +98,29 @@ namespace DAO
                 Console.WriteLine(ex.ToString());
             }
         }
+
+        public static void update(EMPLOYEE employee)
+        {
+            try
+            {
+                EMPLOYEE e = context.EMPLOYEEs.First(x => x.ID == employee.ID);
+                e.UserNo = employee.UserNo;
+                e.Name = employee.Name;
+                e.SurName = employee.SurName;
+                e.Password = employee.Password;
+                e.isAdmin = employee.isAdmin;
+                e.BirthDay = employee.BirthDay;
+                e.Address = employee.Address;
+                e.DepartmentID = employee.DepartmentID;
+                e.PositionID = employee.PositionID;
+                e.Salary = employee.Salary;
+                e.ImagePath = employee.ImagePath;
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
     }
 }

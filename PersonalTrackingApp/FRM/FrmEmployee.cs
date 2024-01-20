@@ -23,9 +23,12 @@ namespace PersonalTrackingApp.FRM
         }
 
         EmployeeDTO dto = new EmployeeDTO();
+        public EmployeeDetailsDTO details = new EmployeeDetailsDTO();
+        public bool isUpdate = false;
         bool comboFull = false;
         bool isUniqueUserNo = false;
         string fileName = "";
+        string imagePath = "";
 
         private void txtUserNo_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -60,22 +63,62 @@ namespace PersonalTrackingApp.FRM
                 MessageBox.Show("Position should be selected !!!");
             else
             {
-                EMPLOYEE employee = new EMPLOYEE();
-                employee.UserNo = Convert.ToInt32(txtUserNo.Text);
-                employee.Password = txtPassword.Text;
-                employee.isAdmin = chkIsAdmin.Checked;
-                employee.Name = txtName.Text;
-                employee.SurName = txtSurName.Text;
-                employee.Salary = Convert.ToInt32(txtSalary.Text);
-                employee.DepartmentID = Convert.ToInt32(cmbDepartment.SelectedValue);
-                employee.PositionID = Convert.ToInt32(cmbPosition.SelectedValue);
-                employee.Address = txtAddress.Text;
-                employee.BirthDay = dptBirthDate.Value;
-                employee.ImagePath = fileName;
-                EmployeeBLL.save(employee);
-                File.Copy(txtImagePath.Text, @"images\\" + fileName);
-                MessageBox.Show("Employee saved successfully !!!");
-                clearField();
+                if (!isUpdate)
+                {
+                    EMPLOYEE employee = new EMPLOYEE();
+                    employee.UserNo = Convert.ToInt32(txtUserNo.Text);
+                    employee.Password = txtPassword.Text;
+                    employee.isAdmin = chkIsAdmin.Checked;
+                    employee.Name = txtName.Text;
+                    employee.SurName = txtSurName.Text;
+                    employee.Salary = Convert.ToInt32(txtSalary.Text);
+                    employee.DepartmentID = Convert.ToInt32(cmbDepartment.SelectedValue);
+                    employee.PositionID = Convert.ToInt32(cmbPosition.SelectedValue);
+                    employee.Address = txtAddress.Text;
+                    employee.BirthDay = dptBirthDate.Value;
+                    employee.ImagePath = fileName;
+                    EmployeeBLL.save(employee);
+                    File.Copy(txtImagePath.Text, @"images\\" + fileName);
+                    MessageBox.Show("Employee saved successfully !!!");
+                    clearField();
+                }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("are you sure to update !!!", "Warning", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        EMPLOYEE employee = new EMPLOYEE();
+                        if (txtImagePath.Text != imagePath)
+                        {
+                            if (File.Exists(@"images\\" + details.imagePath))
+                            {
+                                File.Delete(@"images\\" + details.imagePath);
+                                File.Copy(txtImagePath.Text, @"images\\" + fileName);
+                                employee.ImagePath = fileName;
+                            }
+                            else
+                            {
+                                employee.ImagePath = details.imagePath;
+                            }
+                        }
+                        employee.ID = details.employeeID;
+                        employee.UserNo = Convert.ToInt32(txtUserNo.Text);
+                        employee.Password = txtPassword.Text;
+                        employee.Name = txtName.Text;
+                        employee.SurName = txtSurName.Text;
+                        employee.DepartmentID = Convert.ToInt32(cmbDepartment.SelectedValue);
+                        employee.PositionID = Convert.ToInt32(cmbPosition.SelectedValue);
+                        employee.Salary = Convert.ToInt32(txtSalary.Text);
+                        employee.Address = txtAddress.Text;
+                        employee.isAdmin = chkIsAdmin.Checked;
+                        employee.BirthDay = dptBirthDate.Value;
+                        EmployeeBLL.update(employee);
+                        MessageBox.Show("employee updated successfully !!!");
+                        employee = new EMPLOYEE();
+                        clearField();
+
+                    }
+                }
             }
         }
 
@@ -106,6 +149,22 @@ namespace PersonalTrackingApp.FRM
             cmbPosition.ValueMember = "ID";
             cmbPosition.SelectedIndex = -1;
             comboFull = true;
+            if (isUpdate)
+            {
+                txtUserNo.Text = details.userNo.ToString();
+                txtPassword.Text = details.password.ToString();
+                txtName.Text = details.name.ToString();
+                txtSurName.Text = details.surName.ToString();
+                cmbDepartment.SelectedValue = details.departmentID;
+                cmbPosition.SelectedValue = details.positionID;
+                txtSalary.Text = details.salary.ToString();
+                txtAddress.Text = details.address;
+                chkIsAdmin.Checked = Convert.ToBoolean(details.isAdmin);
+                imagePath = Application.StartupPath + "\\images" + details.imagePath;
+                txtImagePath.Text = imagePath;
+                pictureBoxUserImage.ImageLocation = imagePath;
+                dptBirthDate.Value = Convert.ToDateTime(details.birthDate);
+            }
         }
 
         private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
